@@ -5,7 +5,7 @@ import { requireRole } from "@/lib/require-role";
 import { ROLES } from "@/lib/roles";
 import { Resend } from "resend";
 import { z } from "zod";
-import type { Payment, Installment } from "@prisma/client";
+import type { Payment, Installment } from "@/app/generated/prisma/client";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -28,7 +28,6 @@ type PaymentWithInstallment = Payment & {
 export async function POST(request: NextRequest) {
   try {
     await requireRole(ROLES.SUPER_ADMIN);
-    
 
     const body = await request.json();
     const validated = paymentSchema.safeParse(body);
