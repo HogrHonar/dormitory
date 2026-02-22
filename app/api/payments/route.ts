@@ -7,7 +7,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 import type { Payment, Installment } from "@/app/generated/prisma/client";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = "force-dynamic";
 
 // Validation schema
 const paymentSchema = z.object({
@@ -53,16 +53,7 @@ export async function POST(request: NextRequest) {
       receiptUrl,
     } = validated.data;
 
-    // ---- Input/business validation
-    // if (amount <= 0) {
-    //   return NextResponse.json(
-    //     { error: "Amount must be greater than 0" },
-    //     { status: 400 },
-    //   );
-    // }
-
     if (paymentType === "DISCOUNT") {
-      // Use null/undefined checks, not falsy checks
       const hasPercent = discountPercent != null;
       const hasAmount = discountAmount != null;
 
@@ -97,8 +88,6 @@ export async function POST(request: NextRequest) {
       });
       if (!installment) throw new Error("Installment not found");
 
-      // Sum previous payment effects for this student+installment
-      // ✅ Fixed — only sum RECEIVE/RETURN for paidSoFar
       const [receiveAgg, returnAgg, discountAgg] = await Promise.all([
         tx.payment.aggregate({
           where: { studentId, installmentId, paymentType: "RECEIVE" },
@@ -116,10 +105,9 @@ export async function POST(request: NextRequest) {
 
       const totalReceived = receiveAgg._sum.amount ?? 0;
       const totalReturned = returnAgg._sum.amount ?? 0;
-      const paidSoFar = totalReceived - totalReturned; // ✅ correct net paid
+      const paidSoFar = totalReceived - totalReturned;
       const discountSoFar = discountAgg._sum.discountAmount ?? 0;
 
-      // Derive discount amount if only percent is provided
       const computedDiscountAmount =
         paymentType === "DISCOUNT"
           ? (discountAmount ??
@@ -148,10 +136,6 @@ export async function POST(request: NextRequest) {
         throw new Error("Discount amount cannot be negative");
       }
 
-      console.log("newPaid", newPaid);
-      console.log("newDiscount", newDiscount);
-
-      // Amount due after discounts
       const netDue = Math.max(0, installment.amount - newDiscount);
 
       if (newPaid > netDue) {
@@ -222,7 +206,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Helper function to send email
 async function sendPaymentConfirmationEmail(
   payment: PaymentWithInstallment,
   student: { email: string; fullNameEn: string; fullNameKu?: string | null },
@@ -237,8 +220,9 @@ async function sendPaymentConfirmationEmail(
     return;
   }
 
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
-    // Properly typed payment type mapping
     const paymentTypeMap: Record<string, string> = {
       RECEIVE: "Received",
       RETURN: "Returned",
@@ -302,6 +286,5 @@ async function sendPaymentConfirmationEmail(
     console.log(`Email sent successfully to ${student.email}`);
   } catch (error) {
     console.error("Email sending failed:", error);
-    // Don't throw - this is non-critical
   }
 }
