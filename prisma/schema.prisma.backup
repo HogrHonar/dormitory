@@ -1,0 +1,361 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Test {
+  id    String @id @default(cuid())
+  email String @unique
+  name  String
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  role          String    @default("STUDENT")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+  students      Student[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+model EducationalYear {
+  id        String   @id @default(cuid())
+  index     Int      @unique @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  students Student[] @relation("EntranceYearStudent")
+}
+
+
+model Student {
+  id          String @id @default(cuid())
+  studentCode String @unique  
+  fullNameEn  String
+  fullNameKu  String
+  mobileNo    String
+  gender      String
+  email       String
+  floorNo     Int
+  roomNo      Int
+
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  entranceYearId String
+  entranceYear   EducationalYear @relation("EntranceYearStudent", fields: [entranceYearId], references: [id])
+
+  payments Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+
+  installmentReminders InstallmentReminder[]
+}
+
+model Department {
+  id   String @id @default(cuid())
+  name String @unique
+  code String @unique
+
+  students      Student[]
+  feeStructures FeeStructure[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FeeStructure {
+  id String @id @default(cuid())
+
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  entranceYear String // "2025-2026"
+  totalAmount  Float // 800$
+
+  installments Installment[]
+
+  @@unique([departmentId, entranceYear])
+}
+
+model Installment {
+  id String @id @default(cuid())
+
+  feeStructureId String
+  feeStructure   FeeStructure @relation(fields: [feeStructureId], references: [id])
+
+  title         String
+  installmentNo Int
+  amount        Float
+  startDate     DateTime
+  endDate       DateTime
+
+  payments             Payment[]
+  installmentReminders InstallmentReminder[]
+
+  @@unique([feeStructureId, installmentNo])
+}
+
+enum PaymentType {
+  RECEIVE
+  RETURN
+  DISCOUNT
+}
+
+enum PaymentMethod {
+  CASH
+  FIB
+  FASTPAY
+}
+
+model Payment {
+  id String @id @default(cuid())
+
+  studentId     String
+  installmentId String
+
+  student     Student     @relation(fields: [studentId], references: [id])
+  installment Installment @relation(fields: [installmentId], references: [id])
+
+  amount        Float
+  paymentType   PaymentType
+  paymentMethod PaymentMethod
+  paidAt        DateTime      @default(now())
+
+  @@unique([studentId, installmentId])
+}
+
+enum ReminderStage {
+  FIRST
+  FINAL
+  OVERDUE // Optional: add more stages
+}
+
+model InstallmentReminder {
+  id String @id @default(cuid())
+
+  studentId     String
+  installmentId String
+
+  student     Student     @relation(fields: [studentId], references: [id])
+  installment Installment @relation(fields: [installmentId], references: [id])
+
+  reminderStage ReminderStage // Use enum instead of String
+  sentAt        DateTime      @default(now())
+
+  @@unique([studentId, installmentId, reminderStage])
+}
+
+// model Student {
+//   id          String @id @default(cuid())
+//   studentCode String @unique
+//   fullNameEn  String
+//   fullNameKu  String
+//   email       String
+
+//   departmentId String
+//   department   Department @relation(fields: [departmentId], references: [id])
+
+//   entranceYearId String
+//   entranceYear   EducationalYear @relation("EntranceYearStudent", fields: [entranceYearId], references: [id])
+
+//   currentYearId String
+//   currentYear   EducationalYear @relation("CurrentYearStudent", fields: [currentYearId], references: [id])
+
+//   payments Payment[]
+
+//   createdAt  DateTime  @default(now())
+//   updatedAt  DateTime  @updatedAt
+//   user       User?     @relation(fields: [userId], references: [id])
+//   userId     String?
+//   semester   Semester? @relation(fields: [semesterId], references: [id])
+//   semesterId String?
+// }
+
+// model Collage {
+//   id           String       @id @default(cuid())
+//   name         String       @unique
+//   code         String       @unique
+//   abbreviation String
+//   isActive     Boolean      @default(true)
+//   departments  Department[]
+// }
+
+// model Department {
+//   id   String @id @default(cuid())
+//   name String @unique
+//   code String @unique
+
+//   students      Student[]
+//   feeStructures FeeStructure[]
+
+//   createdAt    DateTime      @default(now())
+//   updatedAt    DateTime      @updatedAt
+//   installments Installment[]
+//   collage      Collage?      @relation(fields: [collageId], references: [id])
+//   collageId    String?
+
+//   @@map("department")
+// }
+
+// model EducationalYear {
+//   id    String @id @default(cuid())
+//   title String @unique // "2025-2026"
+
+//   // Students
+//   entranceStudents Student[] @relation("EntranceYearStudent")
+//   currentStudents  Student[] @relation("CurrentYearStudent")
+
+//   // Fee structures
+//   entranceFeeStructures FeeStructure[] @relation("EntranceYearFeeStructure")
+//   academicFeeStructures FeeStructure[] @relation("AcademicYearFeeStructure")
+
+//   semesters Semester[]
+// }
+
+// model Semester {
+//   id    String @id @default(cuid())
+//   title String // Fall 2025, Spring 2026, etc
+
+//   educationalYearId String
+//   educationalYear   EducationalYear @relation(fields: [educationalYearId], references: [id])
+
+//   students Student[]
+
+//   startDate DateTime
+//   endDate   DateTime
+// }
+
+// model FeeStructure {
+//   id String @id @default(cuid())
+
+//   departmentId String
+//   department   Department @relation(fields: [departmentId], references: [id])
+
+//   entranceYearId String
+//   entranceYear   EducationalYear @relation("EntranceYearFeeStructure", fields: [entranceYearId], references: [id])
+
+//   academicYearId String
+//   academicYear   EducationalYear @relation("AcademicYearFeeStructure", fields: [academicYearId], references: [id])
+
+//   totalAmount Float // e.g. 800$
+
+//   installments Installment[]
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   @@unique([departmentId, entranceYearId, academicYearId])
+//   @@map("fee_structure")
+// }
+
+// model Installment {
+//   id            String   @id @default(cuid())
+//   title         String
+//   installmentNo Int // 1 → 8
+//   amount        Float // 100$
+//   startDate     DateTime
+//   endDate       DateTime
+
+//   payments Payment[]
+
+//   createdAt      DateTime      @default(now())
+//   updatedAt      DateTime      @updatedAt
+//   department     Department?   @relation(fields: [departmentId], references: [id])
+//   departmentId   String?
+//   feeStructure   FeeStructure? @relation(fields: [feeStructureId], references: [id])
+//   feeStructureId String?
+
+//   @@unique([departmentId, installmentNo])
+//   @@map("installment")
+// }
+
+// model Payment {
+//   id            String @id @default(cuid())
+//   studentId     String
+//   installmentId String
+
+//   student     Student     @relation(fields: [studentId], references: [id])
+//   installment Installment @relation(fields: [installmentId], references: [id])
+
+//   amount        Float
+//   paidAt        DateTime
+//   paymentType   String // Discount, Refund, Receive
+//   paymentMethod String // Cash, Card
+//   description   String?
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   @@unique([studentId, installmentId])
+//   @@map("payment")
+// }
