@@ -11,7 +11,7 @@ import { authClient } from "@/lib/auth-client";
 import { Loader2, Mail } from "lucide-react";
 import { useTransition } from "react";
 import { toast } from "sonner";
-
+import type { ErrorContext } from "better-auth/react";
 export default function LoginForm() {
   const [isgooglePending, setGooglTransition] = useTransition();
 
@@ -24,7 +24,7 @@ export default function LoginForm() {
           onSuccess: () => {
             toast.success("Login successful");
           },
-          onError: (error) => {
+          onError: (error: ErrorContext) => {
             toast.error(error.error.message);
           },
         },
