@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function createDormitoryAction(values: DormitorySchemaType) {
-  const session = await requireRole(ROLES.ADMIN);
+  const session = await requireRole(ROLES.SUPER_ADMIN);
   if (!session) return { error: "Unauthorized" };
 
   const parsed = DormitorySchema.safeParse(values);
