@@ -1,15 +1,17 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
+
 import { StudentSchema, StudentSchemaType } from "@/lib/zodSchemas";
 import { revalidatePath } from "next/cache";
+import { hasPermission } from "@/lib/has-permission";
+import { getCurrentUser } from "@/lib/get-current-user";
 
 export async function createStudentAction(values: StudentSchemaType) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) {
-    return { error: "Unauthorized" };
+  const session = await getCurrentUser();
+  const allowed = await hasPermission("students:create");
+  if (!allowed) {
+    return { error: "You do not have permission to create a student" };
   }
 
   const parsed = StudentSchema.safeParse(values);
@@ -98,7 +100,7 @@ export async function createStudentAction(values: StudentSchemaType) {
           validatedValues.roomId && validatedValues.roomId !== "none"
             ? validatedValues.roomId
             : null,
-        userId: session.id,
+        userId: session?.id as string,
       },
       include: {
         department: {

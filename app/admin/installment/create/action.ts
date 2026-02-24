@@ -1,14 +1,14 @@
 "use server";
 
 import { InstallmentSchemaType } from "@/lib/zodSchemas";
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { prisma } from "@/lib/prisma";
 import { InstallmentSchema } from "@/lib/zodSchemas";
+import { hasPermission } from "@/lib/has-permission";
 
 export async function createInstallmentAction(values: InstallmentSchemaType) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("installments:create");
+  if (!allowed)
+    return { error: "You do not have permission to create an installment" };
 
   const parsed = InstallmentSchema.safeParse(values);
   if (!parsed.success) {

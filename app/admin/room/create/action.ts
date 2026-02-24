@@ -1,14 +1,13 @@
 "use server";
 
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { RoomSchemaType, RoomSchema } from "@/lib/zodSchemas";
+import { hasPermission } from "@/lib/has-permission";
 
 export async function createRoomAction(values: RoomSchemaType) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("rooms:create");
+  if (!allowed) return { error: "You do not have permission to create a room" };
 
   const parsed = RoomSchema.safeParse(values);
   if (!parsed.success) {
@@ -80,8 +79,8 @@ export async function createRoomAction(values: RoomSchemaType) {
 }
 
 export async function deleteRoomAction(roomId: string) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("rooms:delete");
+  if (!allowed) return { error: "You do not have permission to delete a room" };
 
   try {
     await prisma.room.delete({

@@ -1,14 +1,14 @@
 "use server";
 
 import { DormitorySchemaType, DormitorySchema } from "@/lib/zodSchemas";
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { hasPermission } from "@/lib/has-permission";
 
 export async function createDormitoryAction(values: DormitorySchemaType) {
-  const session = await requireRole(ROLES.SUPER_ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("dormitories:create");
+  if (!allowed)
+    return { error: "You do not have permission to create a dormitory" };
 
   const parsed = DormitorySchema.safeParse(values);
   if (!parsed.success) {
@@ -75,8 +75,9 @@ export async function createDormitoryAction(values: DormitorySchemaType) {
 }
 
 export async function deleteDormitoryAction(dormitoryId: string) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("dormitories:delete");
+  if (!allowed)
+    return { error: "You do not have permission to delete a dormitory" };
 
   try {
     await prisma.dormitory.delete({

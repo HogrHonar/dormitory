@@ -1,7 +1,5 @@
 "use server";
 
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import {
@@ -10,10 +8,12 @@ import {
   CreateInsuranceSchemaType,
   ReturnInsuranceSchemaType,
 } from "@/lib/zodSchemas";
+import { hasPermission } from "@/lib/has-permission";
 
 export async function createInsuranceAction(values: CreateInsuranceSchemaType) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("insurance:create");
+  if (!allowed)
+    return { error: "You do not have permission to create an insurance" };
 
   const parsed = CreateInsuranceSchema.safeParse(values);
   if (!parsed.success) {
@@ -77,8 +77,9 @@ export async function returnInsuranceAction(
   insuranceId: string,
   values: ReturnInsuranceSchemaType,
 ) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("insurance:update");
+  if (!allowed)
+    return { error: "You do not have permission to return an insurance" };
 
   const parsed = ReturnInsuranceSchema.safeParse(values);
   if (!parsed.success) {
@@ -130,8 +131,9 @@ export async function returnInsuranceAction(
 // ─── Delete ──────────────────────────────────────────────────────────────────
 
 export async function deleteInsuranceAction(insuranceId: string) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("insurance:delete");
+  if (!allowed)
+    return { error: "You do not have permission to delete an insurance" };
 
   try {
     await prisma.dormInsurance.delete({ where: { id: insuranceId } });

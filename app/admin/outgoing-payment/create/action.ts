@@ -10,13 +10,19 @@ import {
   RejectOutgoingPaymentSchema,
 } from "@/lib/zodSchemas";
 import { adminGetAvailableBalance } from "@/app/data/admin/admin-get-outgoing-payments";
+import { hasPermission } from "@/lib/has-permission";
+import { getCurrentUser } from "@/lib/get-current-user";
 
 // Accountant submits a new outgoing payment request
 export async function createOutgoingPaymentAction(
-  values: OutgoingPaymentSchemaType
+  values: OutgoingPaymentSchemaType,
 ) {
-  const session = await requireRole(ROLES.ACCOUNTANT);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("outgoing-payments:create");
+  const session = await getCurrentUser();
+  if (!allowed)
+    return {
+      error: "You do not have permission to create an outgoing payment",
+    };
 
   const parsed = OutgoingPaymentSchema.safeParse(values);
   if (!parsed.success) {
@@ -51,7 +57,7 @@ export async function createOutgoingPaymentAction(
         periodStart: periodStart ? new Date(periodStart) : null,
         periodEnd: periodEnd ? new Date(periodEnd) : null,
         status: "PENDING",
-        submittedBy: session.id,
+        submittedBy: session?.id as string,
         submittedAt: new Date(),
       },
     });
@@ -66,8 +72,12 @@ export async function createOutgoingPaymentAction(
 
 // Admin approves a pending outgoing payment
 export async function approveOutgoingPaymentAction(id: string) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("outgoing-payments:update");
+  const session = await requireRole(ROLES.SUPER_ADMIN);
+  if (!allowed)
+    return {
+      error: "You do not have permission to approve an outgoing payment",
+    };
 
   try {
     const record = await prisma.outgoingPayment.findUnique({ where: { id } });
@@ -96,10 +106,14 @@ export async function approveOutgoingPaymentAction(id: string) {
 // Admin rejects a pending outgoing payment
 export async function rejectOutgoingPaymentAction(
   id: string,
-  rejectionNote: string
+  rejectionNote: string,
 ) {
-  const session = await requireRole(ROLES.ADMIN);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("outgoing-payments:update");
+  const session = await requireRole(ROLES.SUPER_ADMIN);
+  if (!allowed)
+    return {
+      error: "You do not have permission to reject an outgoing payment",
+    };
 
   const parsed = RejectOutgoingPaymentSchema.safeParse({ id, rejectionNote });
   if (!parsed.success) return { error: "تێبینی پێویستە" };
@@ -129,8 +143,11 @@ export async function rejectOutgoingPaymentAction(
 
 // Delete a PENDING outgoing payment (accountant can cancel their own submission)
 export async function deleteOutgoingPaymentAction(id: string) {
-  const session = await requireRole(ROLES.ACCOUNTANT);
-  if (!session) return { error: "Unauthorized" };
+  const allowed = await hasPermission("outgoing-payments:delete");
+  if (!allowed)
+    return {
+      error: "You do not have permission to delete an outgoing payment",
+    };
 
   try {
     const record = await prisma.outgoingPayment.findUnique({ where: { id } });
