@@ -5,6 +5,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   serverExternalPackages: ["@react-pdf/renderer"],
+  allowedDevOrigins: ["dorm.btvi.edu.iq"],
 };
 
 // Compose PWA first, then Sentry

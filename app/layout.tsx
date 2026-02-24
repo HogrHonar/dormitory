@@ -4,15 +4,18 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  manifest: "/manifest.json",
-};
-
 export const viewport: Viewport = {
   themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
+};
+
+export const metadata: Metadata = {
+  manifest: "/manifest.json",
+
+  title: "Dormitory",
+  description: "Dormitory Management System",
 };
 
 export default function RootLayout({

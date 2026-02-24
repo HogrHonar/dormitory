@@ -1,11 +1,17 @@
-version: '3.7'
+
 services: 
-  server: 
+  nextjs-standalone: 
     build: 
       context: .
       dockerfile: Dockerfile
+    image: nextjs-standalone-image
+    container_name: nextjs-standalone-container
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
     ports: 
       - '3000:3000'
+    restart: unless-stopped
     stdin_open: true
     tty: true
     env_file: 
