@@ -1,10 +1,14 @@
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { adminGetAvailableBalance } from "@/app/data/admin/admin-get-outgoing-payments";
 import CreateOutgoingPaymentClient from "./page-client";
+import { getUserPermissions } from "@/lib/has-permission";
+import { redirect } from "next/navigation";
 
 export default async function CreateOutgoingPaymentPage() {
-  await requireRole(ROLES.ACCOUNTANT);
+  const perms = await getUserPermissions();
+
+  const canCreate = perms.has("outgoing-payments:create");
+
+  if (!canCreate) redirect("/unauthorized");
 
   const availableBalance = await adminGetAvailableBalance();
 
