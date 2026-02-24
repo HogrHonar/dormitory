@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { requireRole } from "@/lib/require-role";
 import { ROLES } from "@/lib/roles";
+import { getCurrentUser } from "@/lib/get-current-user";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +38,10 @@ function getTigrisClient() {
 
 export async function POST(request: NextRequest) {
   try {
-    await requireRole(ROLES.SUPER_ADMIN);
+    const auth = await getCurrentUser();
+    if (!auth) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     const formData = await request.formData();
     const file = formData.get("file") as File | null;

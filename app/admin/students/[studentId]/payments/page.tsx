@@ -1,6 +1,4 @@
 // app/admin/students/[studentId]/payments/page.tsx
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import { adminGetStudentPayments } from "@/app/data/admin/admin-get-student-payments";
@@ -12,13 +10,18 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
+import { hasPermission } from "@/lib/has-permission";
+import { redirect } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ studentId: string }>;
 }
 
 export default async function Page(props: PageProps) {
-  await requireRole(ROLES.SUPER_ADMIN);
+  const canRead = await hasPermission("students:read");
+  if (!canRead) {
+    redirect("/unauthorized");
+  }
 
   // Await params first
   const params = await props.params;

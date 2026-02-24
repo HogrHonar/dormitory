@@ -1,7 +1,6 @@
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
+import { hasPermission } from "@/lib/has-permission";
+import { redirect } from "next/navigation";
 import ReturnInsuranceClient from "./client";
 
 interface ReturnInsurancePageProps {
@@ -11,7 +10,11 @@ interface ReturnInsurancePageProps {
 export default async function ReturnInsurancePage({
   params,
 }: ReturnInsurancePageProps) {
-  await requireRole(ROLES.SUPER_ADMIN);
+  const canRead = await hasPermission("insurance:read");
+  if (!canRead) {
+    redirect("/unauthorized");
+  }
+
   const { id } = await params;
 
   const insurance = await prisma.dormInsurance.findUnique({
@@ -29,7 +32,9 @@ export default async function ReturnInsurancePage({
     },
   });
 
-  if (!insurance || insurance.status !== "ACTIVE") notFound();
+  if (!insurance || insurance.status !== "ACTIVE") {
+    redirect("/unauthorized");
+  }
 
   return (
     <section className="container mx-auto px-4 max-w-xl py-6">

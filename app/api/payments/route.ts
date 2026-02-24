@@ -1,8 +1,7 @@
 // app/api/admin/payments/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
+import { hasPermission } from "@/lib/has-permission";
 import { Resend } from "resend";
 import { z } from "zod";
 import type { Payment, Installment } from "@/app/generated/prisma/client";
@@ -27,7 +26,10 @@ type PaymentWithInstallment = Payment & {
 
 export async function POST(request: NextRequest) {
   try {
-    await requireRole(ROLES.SUPER_ADMIN);
+    const canRead = await hasPermission("payments:create");
+    if (!canRead) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     const body = await request.json();
     const validated = paymentSchema.safeParse(body);

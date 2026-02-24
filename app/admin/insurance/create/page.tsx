@@ -1,10 +1,13 @@
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { prisma } from "@/lib/prisma";
 import CreateInsuranceClient from "./page-client";
+import { hasPermission } from "@/lib/has-permission";
+import { redirect } from "next/navigation";
 
 export default async function CreateInsurancePage() {
-  await requireRole(ROLES.SUPER_ADMIN);
+  const canRead = await hasPermission("insurance:read");
+  if (!canRead) {
+    redirect("/unauthorized");
+  }
 
   // Only students who are assigned to a room
   const students = await prisma.student.findMany({

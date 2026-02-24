@@ -1,10 +1,13 @@
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
 import { getDormitories } from "@/app/data/admin/admin-get-dormitories";
 import CreateRoomClient from "./page-client";
+import { hasPermission } from "@/lib/has-permission";
+import { redirect } from "next/navigation";
 
 export default async function CreateRoomPage() {
-  await requireRole(ROLES.SUPER_ADMIN);
+  const canRead = await hasPermission("rooms:read");
+  if (!canRead) {
+    redirect("/unauthorized");
+  }
 
   const dormitories = await getDormitories();
 

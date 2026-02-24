@@ -2,15 +2,21 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { requireRole } from "@/lib/require-role";
-import { ROLES } from "@/lib/roles";
+import { hasPermission } from "@/lib/has-permission";
+
 import { expenseSchema, ExpenseFormValues } from "@/lib/zodSchemas";
 
 export async function createExpense(
   values: ExpenseFormValues,
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    await requireRole(ROLES.SUPER_ADMIN);
+    const allowed = await hasPermission("expenses:create");
+    if (!allowed) {
+      return {
+        success: false,
+        error: "You do not have permission to create an expense",
+      };
+    }
 
     const parsed = expenseSchema.safeParse(values);
     if (!parsed.success) {
@@ -52,7 +58,13 @@ export async function updateExpense(
   values: ExpenseFormValues,
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    await requireRole(ROLES.SUPER_ADMIN);
+    const allowed = await hasPermission("expenses:update");
+    if (!allowed) {
+      return {
+        success: false,
+        error: "You do not have permission to update an expense",
+      };
+    }
 
     const parsed = expenseSchema.safeParse(values);
     if (!parsed.success) {
@@ -94,7 +106,13 @@ export async function deleteExpense(
   id: string,
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    await requireRole(ROLES.SUPER_ADMIN);
+    const allowed = await hasPermission("expenses:delete");
+    if (!allowed) {
+      return {
+        success: false,
+        error: "You do not have permission to delete an expense",
+      };
+    }
 
     await prisma.expense.delete({
       where: { id },
