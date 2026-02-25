@@ -89,7 +89,7 @@ function buildNav(permissions: Set<string>): GroupItem[] {
     can("departments:read")
       ? { title: "بەشەکان", url: "/admin/settings/instittue/departments" }
       : undefined,
-    can("fees:read")
+    can("installments:read")
       ? { title: "کرێی بەشە ناوخۆییەکان", url: "/admin/installment" }
       : undefined,
   ].filter(Boolean) as SimpleItem[];
