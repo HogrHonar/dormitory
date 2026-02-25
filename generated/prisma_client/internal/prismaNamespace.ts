@@ -2032,9 +2032,9 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  roleId: 'roleId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  roleId: 'roleId',
   isAllowed: 'isAllowed'
 } as const
 
@@ -2143,13 +2143,14 @@ export const StudentScalarFieldEnum = {
   mobileNo: 'mobileNo',
   gender: 'gender',
   email: 'email',
-  isActive: 'isActive',
   departmentId: 'departmentId',
   entranceYearId: 'entranceYearId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
-  roomId: 'roomId'
+  isActive: 'isActive',
+  roomId: 'roomId',
+  mobileNo2: 'mobileNo2'
 } as const
 
 export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
@@ -2194,12 +2195,12 @@ export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof
 export const InstallmentScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  amount: 'amount',
   installmentNo: 'installmentNo',
-  yearId: 'yearId',
-  entranceYearId: 'entranceYearId',
+  amount: 'amount',
   startDate: 'startDate',
-  endDate: 'endDate'
+  endDate: 'endDate',
+  entranceYearId: 'entranceYearId',
+  yearId: 'yearId'
 } as const
 
 export type InstallmentScalarFieldEnum = (typeof InstallmentScalarFieldEnum)[keyof typeof InstallmentScalarFieldEnum]
@@ -2209,16 +2210,16 @@ export const PaymentScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   installmentId: 'installmentId',
-  paymentStatus: 'paymentStatus',
-  note: 'note',
-  discountPercent: 'discountPercent',
-  discountAmount: 'discountAmount',
-  receiptUrl: 'receiptUrl',
   amount: 'amount',
   paymentType: 'paymentType',
   paymentMethod: 'paymentMethod',
+  discountAmount: 'discountAmount',
+  discountPercent: 'discountPercent',
+  receiptUrl: 'receiptUrl',
   createdBy: 'createdBy',
-  paidAt: 'paidAt'
+  note: 'note',
+  paidAt: 'paidAt',
+  paymentStatus: 'paymentStatus'
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -2281,9 +2282,9 @@ export const ExpenseScalarFieldEnum = {
   date: 'date',
   documentUrl: 'documentUrl',
   categoryId: 'categoryId',
-  dormId: 'dormId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  dormId: 'dormId'
 } as const
 
 export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]

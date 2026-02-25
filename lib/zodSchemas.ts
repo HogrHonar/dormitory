@@ -4,12 +4,13 @@ export const StudentSchema = z.object({
   studentCode: z.string().min(1, { message: "کۆدی فێرخواز پێویستە" }),
   fullNameEn: z.string().min(1, { message: "ناوی فێرخواز پێویستە" }),
   fullNameKu: z.string().min(1, { message: "ناوی فێرخواز پێویستە" }),
-  mobileNo: z.string().min(1, { message: "ژمارەی هاتی پێویستە" }),
+  mobileNo: z.string().min(1, { message: "ژمارەی مۆبایل پێویستە" }),
+  mobileNo2: z.string().min(1, { message: "ژمارەی بەخێوکەر پێویستە" }),
   gender: z.enum(["Male", "Female"]),
-  email: z.string().email({ message: "ژمارەی هاتی پێویستە" }),
-  departmentId: z.string().min(1, { message: "ژمارەی هاتی پێویستە" }),
-  entranceYearId: z.string().min(1, { message: "ژمارەی هاتی پێویستە" }),
-  roomId: z.string().min(1, { message: "ژمارەی هاتی پێویستە" }),
+  email: z.string().email({ message: "ئیمەیڵ دروست نییە" }),
+  departmentId: z.string().min(1, { message: "بەش پێویستە" }),
+  entranceYearId: z.string().min(1, { message: "ساڵی هاتن پێویستە" }),
+  roomId: z.string().min(1, { message: "ژوور پێویستە" }),
   isActive: z.boolean(),
 });
 

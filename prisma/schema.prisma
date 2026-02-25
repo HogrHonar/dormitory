@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client"
-  output = "../generated/prisma_client"
+  output   = "../generated/prisma_client"
 }
 
 datasource db {
@@ -14,68 +14,56 @@ model Test {
 }
 
 model User {
-  id            String  @id
-  name          String
-  email         String
-  emailVerified Boolean @default(false)
-  image         String?
-
-  roleId String?
-  role   Role?   @relation(fields: [roleId], references: [id], onDelete: SetNull)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  sessions  Session[]
-  accounts  Account[]
-  students  Student[]
-  isAllowed Boolean   @default(false)
-
+  id                 String      @id
+  name               String
+  email              String      @unique
+  emailVerified      Boolean     @default(false)
+  image              String?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  roleId             String?
+  isAllowed          Boolean     @default(false)
   managedDormitories Dormitory[] @relation("DormitoryManager")
+  students           Student[]
+  accounts           Account[]
+  sessions           Session[]
+  role               Role?       @relation(fields: [roleId], references: [id])
 
-  @@unique([email])
   @@map("user")
 }
 
 model Role {
-  id          String  @id @default(cuid())
-  name        String  @unique
+  id          String           @id @default(cuid())
+  name        String           @unique
   description String?
-
-  users       User[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
   permissions RolePermission[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  users       User[]
 }
 
 model Permission {
-  id          String  @id @default(cuid())
-  name        String  @unique
+  id          String           @id @default(cuid())
+  name        String           @unique
   description String?
-
-  roles RolePermission[]
-
-  createdAt DateTime @default(now())
+  createdAt   DateTime         @default(now())
+  roles       RolePermission[]
 }
 
 model RolePermission {
   roleId       String
   permissionId String
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
 
-  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
-
-  @@id([roleId, permissionId]) // Composite Primary Key
+  @@id([roleId, permissionId])
   @@index([permissionId])
 }
-
-
 
 model Session {
   id        String   @id
   expiresAt DateTime
-  token     String
+  token     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   ipAddress String?
@@ -83,7 +71,6 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([token])
   @@index([userId])
   @@map("session")
 }
@@ -93,7 +80,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -103,6 +89,7 @@ model Account {
   password              String?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("account")
@@ -121,58 +108,48 @@ model Verification {
 }
 
 model FeeStructure {
-  id String @id @default(cuid())
-
+  id           String     @id @default(cuid())
   departmentId String
+  entranceYear String
+  totalAmount  Float
   department   Department @relation(fields: [departmentId], references: [id])
-
-  entranceYear String // "2025-2026"
-  totalAmount  Float // 800$
 
   @@unique([departmentId, entranceYear])
 }
 
 model EducationalYear {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Back-references
-  students           Student[]     @relation("EntranceYearStudent")
-  installmentsByYear Installment[] @relation("InstallmentYear")
+  id                 String        @id @default(cuid())
+  name               String        @unique
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
   installmentsByEntr Installment[] @relation("EntranceYear")
+  installmentsByYear Installment[] @relation("InstallmentYear")
+  students           Student[]     @relation("EntranceYearStudent")
 }
 
 model Student {
-  id          String  @id @default(cuid())
-  studentCode String  @unique
-  fullNameEn  String
-  fullNameKu  String
-  mobileNo    String
-  gender      String
-  email       String
-  isActive    Boolean @default(true)
-
-  departmentId String
-  department   Department @relation(fields: [departmentId], references: [id])
-
-  entranceYearId String
-  entranceYear   EducationalYear @relation("EntranceYearStudent", fields: [entranceYearId], references: [id])
-
-  payments Payment[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User?    @relation(fields: [userId], references: [id])
-  userId    String?
-
+  id                   String                @id @default(cuid())
+  studentCode          String                @unique
+  fullNameEn           String
+  fullNameKu           String
+  mobileNo             String
+  gender               String
+  email                String
+  departmentId         String
+  entranceYearId       String
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  userId               String?
+  isActive             Boolean               @default(true)
+  roomId               String?
+  mobileNo2            String?
+  dormInsurances       DormInsurance[]
   installmentReminders InstallmentReminder[]
-
-  roomId String?
-  room   Room?   @relation(fields: [roomId], references: [id])
-
-  dormInsurances DormInsurance[]
+  payments             Payment[]
+  department           Department            @relation(fields: [departmentId], references: [id])
+  entranceYear         EducationalYear       @relation("EntranceYearStudent", fields: [entranceYearId], references: [id])
+  room                 Room?                 @relation(fields: [roomId], references: [id])
+  user                 User?                 @relation(fields: [userId], references: [id])
 }
 
 model Dormitory {
@@ -181,10 +158,10 @@ model Dormitory {
   description String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  manager     User?     @relation("DormitoryManager", fields: [managerId], references: [id], onDelete: Cascade)
   managerId   String?
-  rooms       Room[]
+  manager     User?     @relation("DormitoryManager", fields: [managerId], references: [id], onDelete: Cascade)
   expenses    Expense[]
+  rooms       Room[]
 }
 
 model Room {
@@ -203,37 +180,126 @@ model Room {
 }
 
 model Department {
-  id   String @id @default(cuid())
-  name String @unique
-  code String @unique
-
-  students      Student[]
+  id            String         @id @default(cuid())
+  name          String         @unique
+  code          String         @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   feeStructures FeeStructure[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  students      Student[]
 }
 
 model Installment {
-  id String @id @default(cuid())
-
-  title         String
-  amount        Float
-  installmentNo Int
-
-  yearId String
-  year   EducationalYear @relation("InstallmentYear", fields: [yearId], references: [id])
-
-  entranceYearId String
-  entranceYear   EducationalYear @relation("EntranceYear", fields: [entranceYearId], references: [id])
-
-  startDate DateTime
-  endDate   DateTime
-
-  payments             Payment[]
+  id                   String                @id @default(cuid())
+  title                String
+  installmentNo        Int
+  amount               Float
+  startDate            DateTime
+  endDate              DateTime
+  entranceYearId       String
+  yearId               String
+  entranceYear         EducationalYear       @relation("EntranceYear", fields: [entranceYearId], references: [id])
+  year                 EducationalYear       @relation("InstallmentYear", fields: [yearId], references: [id])
   installmentReminders InstallmentReminder[]
+  payments             Payment[]
 
   @@unique([yearId, installmentNo])
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  studentId       String
+  installmentId   String
+  amount          Float
+  paymentType     PaymentType
+  paymentMethod   PaymentMethod
+  discountAmount  Float?
+  discountPercent Float?
+  receiptUrl      String?
+  createdBy       String?
+  note            String?
+  paidAt          DateTime      @default(now())
+  paymentStatus   String?
+  installment     Installment   @relation(fields: [installmentId], references: [id])
+  student         Student       @relation(fields: [studentId], references: [id])
+
+  @@index([studentId])
+  @@index([installmentId])
+  @@index([paidAt])
+}
+
+model DormInsurance {
+  id             String          @id @default(cuid())
+  studentId      String
+  amountPaid     Float
+  paidAt         DateTime        @default(now())
+  paymentMethod  PaymentMethod
+  amountReturned Float?
+  returnedAt     DateTime?
+  returnNote     String?
+  returnedBy     String?
+  status         InsuranceStatus @default(ACTIVE)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  student        Student         @relation(fields: [studentId], references: [id])
+
+  @@index([studentId])
+}
+
+model OutgoingPayment {
+  id               String         @id @default(cuid())
+  totalCollected   Float
+  amountToHandOver Float
+  remainingFloat   Float
+  note             String?
+  paymentMethod    PaymentMethod
+  periodStart      DateTime?
+  periodEnd        DateTime?
+  status           OutgoingStatus @default(PENDING)
+  submittedBy      String
+  submittedAt      DateTime       @default(now())
+  approvedBy       String?
+  approvedAt       DateTime?
+  rejectionNote    String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@index([status])
+  @@index([submittedBy])
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  expenses  Expense[]
+}
+
+model Expense {
+  id          String     @id @default(uuid())
+  title       String
+  amount      Float
+  description String?
+  date        DateTime   @default(now())
+  documentUrl String?
+  categoryId  String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  dormId      String?
+  category    Category   @relation(fields: [categoryId], references: [id])
+  dorm        Dormitory? @relation(fields: [dormId], references: [id])
+}
+
+model InstallmentReminder {
+  id            String        @id @default(cuid())
+  studentId     String
+  installmentId String
+  reminderStage ReminderStage
+  sentAt        DateTime      @default(now())
+  installment   Installment   @relation(fields: [installmentId], references: [id])
+  student       Student       @relation(fields: [studentId], references: [id])
+
+  @@unique([studentId, installmentId, reminderStage])
 }
 
 enum PaymentType {
@@ -248,63 +314,10 @@ enum PaymentMethod {
   FASTPAY
 }
 
-model Payment {
-  id String @id @default(cuid())
-
-  studentId     String
-  installmentId String
-  paymentStatus String?
-
-  note String?
-
-  discountPercent Float?
-  discountAmount  Float?
-  receiptUrl      String?
-
-  student     Student     @relation(fields: [studentId], references: [id])
-  installment Installment @relation(fields: [installmentId], references: [id])
-
-  amount        Float
-  paymentType   PaymentType
-  paymentMethod PaymentMethod
-  createdBy     String?
-
-  paidAt DateTime @default(now())
-
-  @@index([studentId])
-  @@index([installmentId])
-  @@index([paidAt])
-}
-
 enum InsuranceStatus {
-  ACTIVE // Student paid, currently in dormitory
-  RETURNED // Left dormitory, insurance returned (full or partial)
-  FORFEITED // Left dormitory, insurance kept (major issue)
-}
-
-model DormInsurance {
-  id        String @id @default(cuid())
-  studentId String
-
-  // Payment in
-  amountPaid    Float // What student paid (usually 100,000)
-  paidAt        DateTime      @default(now())
-  paymentMethod PaymentMethod // reuse your existing enum
-
-  // Return info (filled when student leaves)
-  amountReturned Float? // null until returned
-  returnedAt     DateTime?
-  returnNote     String? // e.g. "Broken chair, dirty bathroom"
-  returnedBy     String? // admin userId who processed return
-
-  status InsuranceStatus @default(ACTIVE)
-
-  student Student @relation(fields: [studentId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([studentId])
+  ACTIVE
+  RETURNED
+  FORFEITED
 }
 
 enum OutgoingStatus {
@@ -313,78 +326,8 @@ enum OutgoingStatus {
   REJECTED
 }
 
-model OutgoingPayment {
-  id String @id @default(cuid())
-
-  totalCollected   Float
-  amountToHandOver Float
-  remainingFloat   Float
-
-  note          String?
-  paymentMethod PaymentMethod
-
-  periodStart DateTime?
-  periodEnd   DateTime?
-
-  status OutgoingStatus @default(PENDING)
-
-  submittedBy String
-  submittedAt DateTime @default(now())
-
-  approvedBy    String?
-  approvedAt    DateTime?
-  rejectionNote String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([status])
-  @@index([submittedBy])
-}
-
-model Category {
-  id        String   @id @default(uuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
-
-  expenses Expense[]
-}
-
-model Expense {
-  id          String   @id @default(uuid())
-  title       String
-  amount      Float
-  description String?
-  date        DateTime @default(now())
-  documentUrl String?
-
-  categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
-
-  dormId String?
-  dorm   Dormitory? @relation(fields: [dormId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 enum ReminderStage {
   FIRST
   FINAL
-  OVERDUE // Optional: add more stages
-}
-
-model InstallmentReminder {
-  id String @id @default(cuid())
-
-  studentId     String
-  installmentId String
-
-  student     Student     @relation(fields: [studentId], references: [id])
-  installment Installment @relation(fields: [installmentId], references: [id])
-
-  reminderStage ReminderStage // Use enum instead of String
-  sentAt        DateTime      @default(now())
-
-  @@unique([studentId, installmentId, reminderStage])
+  OVERDUE
 }

@@ -9,6 +9,7 @@ export type StudentsProps = {
   fullNameEn: string;
   fullNameKu: string;
   mobileNo: string;
+  mobileNo2: string;
   gender: string;
   department: {
     name: string;
@@ -171,6 +172,7 @@ export async function adminGetStudents(
     fullNameEn: student.fullNameEn,
     fullNameKu: student.fullNameKu,
     mobileNo: student.mobileNo,
+    mobileNo2: student.mobileNo2 ?? "",
     gender: student.gender,
     email: student.email,
     department: {

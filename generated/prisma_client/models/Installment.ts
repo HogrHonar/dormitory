@@ -27,91 +27,91 @@ export type AggregateInstallment = {
 }
 
 export type InstallmentAvgAggregateOutputType = {
-  amount: number | null
   installmentNo: number | null
+  amount: number | null
 }
 
 export type InstallmentSumAggregateOutputType = {
-  amount: number | null
   installmentNo: number | null
+  amount: number | null
 }
 
 export type InstallmentMinAggregateOutputType = {
   id: string | null
   title: string | null
-  amount: number | null
   installmentNo: number | null
-  yearId: string | null
-  entranceYearId: string | null
+  amount: number | null
   startDate: Date | null
   endDate: Date | null
+  entranceYearId: string | null
+  yearId: string | null
 }
 
 export type InstallmentMaxAggregateOutputType = {
   id: string | null
   title: string | null
-  amount: number | null
   installmentNo: number | null
-  yearId: string | null
-  entranceYearId: string | null
+  amount: number | null
   startDate: Date | null
   endDate: Date | null
+  entranceYearId: string | null
+  yearId: string | null
 }
 
 export type InstallmentCountAggregateOutputType = {
   id: number
   title: number
-  amount: number
   installmentNo: number
-  yearId: number
-  entranceYearId: number
+  amount: number
   startDate: number
   endDate: number
+  entranceYearId: number
+  yearId: number
   _all: number
 }
 
 
 export type InstallmentAvgAggregateInputType = {
-  amount?: true
   installmentNo?: true
+  amount?: true
 }
 
 export type InstallmentSumAggregateInputType = {
-  amount?: true
   installmentNo?: true
+  amount?: true
 }
 
 export type InstallmentMinAggregateInputType = {
   id?: true
   title?: true
-  amount?: true
   installmentNo?: true
-  yearId?: true
-  entranceYearId?: true
+  amount?: true
   startDate?: true
   endDate?: true
+  entranceYearId?: true
+  yearId?: true
 }
 
 export type InstallmentMaxAggregateInputType = {
   id?: true
   title?: true
-  amount?: true
   installmentNo?: true
-  yearId?: true
-  entranceYearId?: true
+  amount?: true
   startDate?: true
   endDate?: true
+  entranceYearId?: true
+  yearId?: true
 }
 
 export type InstallmentCountAggregateInputType = {
   id?: true
   title?: true
-  amount?: true
   installmentNo?: true
-  yearId?: true
-  entranceYearId?: true
+  amount?: true
   startDate?: true
   endDate?: true
+  entranceYearId?: true
+  yearId?: true
   _all?: true
 }
 
@@ -204,12 +204,12 @@ export type InstallmentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type InstallmentGroupByOutputType = {
   id: string
   title: string
-  amount: number
   installmentNo: number
-  yearId: string
-  entranceYearId: string
+  amount: number
   startDate: Date
   endDate: Date
+  entranceYearId: string
+  yearId: string
   _count: InstallmentCountAggregateOutputType | null
   _avg: InstallmentAvgAggregateOutputType | null
   _sum: InstallmentSumAggregateOutputType | null
@@ -238,31 +238,31 @@ export type InstallmentWhereInput = {
   NOT?: Prisma.InstallmentWhereInput | Prisma.InstallmentWhereInput[]
   id?: Prisma.StringFilter<"Installment"> | string
   title?: Prisma.StringFilter<"Installment"> | string
-  amount?: Prisma.FloatFilter<"Installment"> | number
   installmentNo?: Prisma.IntFilter<"Installment"> | number
-  yearId?: Prisma.StringFilter<"Installment"> | string
-  entranceYearId?: Prisma.StringFilter<"Installment"> | string
+  amount?: Prisma.FloatFilter<"Installment"> | number
   startDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
-  year?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
+  entranceYearId?: Prisma.StringFilter<"Installment"> | string
+  yearId?: Prisma.StringFilter<"Installment"> | string
   entranceYear?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
-  payments?: Prisma.PaymentListRelationFilter
+  year?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
   installmentReminders?: Prisma.InstallmentReminderListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }
 
 export type InstallmentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
   installmentNo?: Prisma.SortOrder
-  yearId?: Prisma.SortOrder
-  entranceYearId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
-  year?: Prisma.EducationalYearOrderByWithRelationInput
+  entranceYearId?: Prisma.SortOrder
+  yearId?: Prisma.SortOrder
   entranceYear?: Prisma.EducationalYearOrderByWithRelationInput
-  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  year?: Prisma.EducationalYearOrderByWithRelationInput
   installmentReminders?: Prisma.InstallmentReminderOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
 }
 
 export type InstallmentWhereUniqueInput = Prisma.AtLeast<{
@@ -272,27 +272,27 @@ export type InstallmentWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.InstallmentWhereInput[]
   NOT?: Prisma.InstallmentWhereInput | Prisma.InstallmentWhereInput[]
   title?: Prisma.StringFilter<"Installment"> | string
-  amount?: Prisma.FloatFilter<"Installment"> | number
   installmentNo?: Prisma.IntFilter<"Installment"> | number
-  yearId?: Prisma.StringFilter<"Installment"> | string
-  entranceYearId?: Prisma.StringFilter<"Installment"> | string
+  amount?: Prisma.FloatFilter<"Installment"> | number
   startDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
-  year?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
+  entranceYearId?: Prisma.StringFilter<"Installment"> | string
+  yearId?: Prisma.StringFilter<"Installment"> | string
   entranceYear?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
-  payments?: Prisma.PaymentListRelationFilter
+  year?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
   installmentReminders?: Prisma.InstallmentReminderListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }, "id" | "yearId_installmentNo">
 
 export type InstallmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
   installmentNo?: Prisma.SortOrder
-  yearId?: Prisma.SortOrder
-  entranceYearId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  entranceYearId?: Prisma.SortOrder
+  yearId?: Prisma.SortOrder
   _count?: Prisma.InstallmentCountOrderByAggregateInput
   _avg?: Prisma.InstallmentAvgOrderByAggregateInput
   _max?: Prisma.InstallmentMaxOrderByAggregateInput
@@ -306,82 +306,82 @@ export type InstallmentScalarWhereWithAggregatesInput = {
   NOT?: Prisma.InstallmentScalarWhereWithAggregatesInput | Prisma.InstallmentScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Installment"> | string
   title?: Prisma.StringWithAggregatesFilter<"Installment"> | string
-  amount?: Prisma.FloatWithAggregatesFilter<"Installment"> | number
   installmentNo?: Prisma.IntWithAggregatesFilter<"Installment"> | number
-  yearId?: Prisma.StringWithAggregatesFilter<"Installment"> | string
-  entranceYearId?: Prisma.StringWithAggregatesFilter<"Installment"> | string
+  amount?: Prisma.FloatWithAggregatesFilter<"Installment"> | number
   startDate?: Prisma.DateTimeWithAggregatesFilter<"Installment"> | Date | string
   endDate?: Prisma.DateTimeWithAggregatesFilter<"Installment"> | Date | string
+  entranceYearId?: Prisma.StringWithAggregatesFilter<"Installment"> | string
+  yearId?: Prisma.StringWithAggregatesFilter<"Installment"> | string
 }
 
 export type InstallmentCreateInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
+  amount: number
   startDate: Date | string
   endDate: Date | string
-  year: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByYearInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByEntrInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutInstallmentInput
+  year: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByYearInput
   installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutInstallmentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutInstallmentInput
 }
 
 export type InstallmentUncheckedCreateInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
-  yearId: string
-  entranceYearId: string
+  amount: number
   startDate: Date | string
   endDate: Date | string
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInstallmentInput
+  entranceYearId: string
+  yearId: string
   installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutInstallmentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInstallmentInput
 }
 
 export type InstallmentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  year?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByYearNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByEntrNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutInstallmentNestedInput
+  year?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByYearNestedInput
   installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutInstallmentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutInstallmentNestedInput
 }
 
 export type InstallmentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  yearId?: Prisma.StringFieldUpdateOperationsInput | string
-  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInstallmentNestedInput
+  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  yearId?: Prisma.StringFieldUpdateOperationsInput | string
   installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutInstallmentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInstallmentNestedInput
 }
 
 export type InstallmentCreateManyInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
-  yearId: string
-  entranceYearId: string
+  amount: number
   startDate: Date | string
   endDate: Date | string
+  entranceYearId: string
+  yearId: string
 }
 
 export type InstallmentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -389,12 +389,12 @@ export type InstallmentUpdateManyMutationInput = {
 export type InstallmentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  yearId?: Prisma.StringFieldUpdateOperationsInput | string
-  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  yearId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InstallmentListRelationFilter = {
@@ -415,56 +415,49 @@ export type InstallmentYearIdInstallmentNoCompoundUniqueInput = {
 export type InstallmentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
   installmentNo?: Prisma.SortOrder
-  yearId?: Prisma.SortOrder
-  entranceYearId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  entranceYearId?: Prisma.SortOrder
+  yearId?: Prisma.SortOrder
 }
 
 export type InstallmentAvgOrderByAggregateInput = {
-  amount?: Prisma.SortOrder
   installmentNo?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type InstallmentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
   installmentNo?: Prisma.SortOrder
-  yearId?: Prisma.SortOrder
-  entranceYearId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  entranceYearId?: Prisma.SortOrder
+  yearId?: Prisma.SortOrder
 }
 
 export type InstallmentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
   installmentNo?: Prisma.SortOrder
-  yearId?: Prisma.SortOrder
-  entranceYearId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  entranceYearId?: Prisma.SortOrder
+  yearId?: Prisma.SortOrder
 }
 
 export type InstallmentSumOrderByAggregateInput = {
-  amount?: Prisma.SortOrder
   installmentNo?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type InstallmentScalarRelationFilter = {
   is?: Prisma.InstallmentWhereInput
   isNot?: Prisma.InstallmentWhereInput
-}
-
-export type InstallmentCreateNestedManyWithoutYearInput = {
-  create?: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput> | Prisma.InstallmentCreateWithoutYearInput[] | Prisma.InstallmentUncheckedCreateWithoutYearInput[]
-  connectOrCreate?: Prisma.InstallmentCreateOrConnectWithoutYearInput | Prisma.InstallmentCreateOrConnectWithoutYearInput[]
-  createMany?: Prisma.InstallmentCreateManyYearInputEnvelope
-  connect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
 }
 
 export type InstallmentCreateNestedManyWithoutEntranceYearInput = {
@@ -474,7 +467,7 @@ export type InstallmentCreateNestedManyWithoutEntranceYearInput = {
   connect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
 }
 
-export type InstallmentUncheckedCreateNestedManyWithoutYearInput = {
+export type InstallmentCreateNestedManyWithoutYearInput = {
   create?: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput> | Prisma.InstallmentCreateWithoutYearInput[] | Prisma.InstallmentUncheckedCreateWithoutYearInput[]
   connectOrCreate?: Prisma.InstallmentCreateOrConnectWithoutYearInput | Prisma.InstallmentCreateOrConnectWithoutYearInput[]
   createMany?: Prisma.InstallmentCreateManyYearInputEnvelope
@@ -488,18 +481,11 @@ export type InstallmentUncheckedCreateNestedManyWithoutEntranceYearInput = {
   connect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
 }
 
-export type InstallmentUpdateManyWithoutYearNestedInput = {
+export type InstallmentUncheckedCreateNestedManyWithoutYearInput = {
   create?: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput> | Prisma.InstallmentCreateWithoutYearInput[] | Prisma.InstallmentUncheckedCreateWithoutYearInput[]
   connectOrCreate?: Prisma.InstallmentCreateOrConnectWithoutYearInput | Prisma.InstallmentCreateOrConnectWithoutYearInput[]
-  upsert?: Prisma.InstallmentUpsertWithWhereUniqueWithoutYearInput | Prisma.InstallmentUpsertWithWhereUniqueWithoutYearInput[]
   createMany?: Prisma.InstallmentCreateManyYearInputEnvelope
-  set?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
-  disconnect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
-  delete?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
   connect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
-  update?: Prisma.InstallmentUpdateWithWhereUniqueWithoutYearInput | Prisma.InstallmentUpdateWithWhereUniqueWithoutYearInput[]
-  updateMany?: Prisma.InstallmentUpdateManyWithWhereWithoutYearInput | Prisma.InstallmentUpdateManyWithWhereWithoutYearInput[]
-  deleteMany?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
 }
 
 export type InstallmentUpdateManyWithoutEntranceYearNestedInput = {
@@ -516,7 +502,7 @@ export type InstallmentUpdateManyWithoutEntranceYearNestedInput = {
   deleteMany?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
 }
 
-export type InstallmentUncheckedUpdateManyWithoutYearNestedInput = {
+export type InstallmentUpdateManyWithoutYearNestedInput = {
   create?: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput> | Prisma.InstallmentCreateWithoutYearInput[] | Prisma.InstallmentUncheckedCreateWithoutYearInput[]
   connectOrCreate?: Prisma.InstallmentCreateOrConnectWithoutYearInput | Prisma.InstallmentCreateOrConnectWithoutYearInput[]
   upsert?: Prisma.InstallmentUpsertWithWhereUniqueWithoutYearInput | Prisma.InstallmentUpsertWithWhereUniqueWithoutYearInput[]
@@ -541,6 +527,20 @@ export type InstallmentUncheckedUpdateManyWithoutEntranceYearNestedInput = {
   connect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
   update?: Prisma.InstallmentUpdateWithWhereUniqueWithoutEntranceYearInput | Prisma.InstallmentUpdateWithWhereUniqueWithoutEntranceYearInput[]
   updateMany?: Prisma.InstallmentUpdateManyWithWhereWithoutEntranceYearInput | Prisma.InstallmentUpdateManyWithWhereWithoutEntranceYearInput[]
+  deleteMany?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
+}
+
+export type InstallmentUncheckedUpdateManyWithoutYearNestedInput = {
+  create?: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput> | Prisma.InstallmentCreateWithoutYearInput[] | Prisma.InstallmentUncheckedCreateWithoutYearInput[]
+  connectOrCreate?: Prisma.InstallmentCreateOrConnectWithoutYearInput | Prisma.InstallmentCreateOrConnectWithoutYearInput[]
+  upsert?: Prisma.InstallmentUpsertWithWhereUniqueWithoutYearInput | Prisma.InstallmentUpsertWithWhereUniqueWithoutYearInput[]
+  createMany?: Prisma.InstallmentCreateManyYearInputEnvelope
+  set?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
+  disconnect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
+  delete?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
+  connect?: Prisma.InstallmentWhereUniqueInput | Prisma.InstallmentWhereUniqueInput[]
+  update?: Prisma.InstallmentUpdateWithWhereUniqueWithoutYearInput | Prisma.InstallmentUpdateWithWhereUniqueWithoutYearInput[]
+  updateMany?: Prisma.InstallmentUpdateManyWithWhereWithoutYearInput | Prisma.InstallmentUpdateManyWithWhereWithoutYearInput[]
   deleteMany?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
 }
 
@@ -572,62 +572,28 @@ export type InstallmentUpdateOneRequiredWithoutInstallmentRemindersNestedInput =
   update?: Prisma.XOR<Prisma.XOR<Prisma.InstallmentUpdateToOneWithWhereWithoutInstallmentRemindersInput, Prisma.InstallmentUpdateWithoutInstallmentRemindersInput>, Prisma.InstallmentUncheckedUpdateWithoutInstallmentRemindersInput>
 }
 
-export type InstallmentCreateWithoutYearInput = {
-  id?: string
-  title: string
-  amount: number
-  installmentNo: number
-  startDate: Date | string
-  endDate: Date | string
-  entranceYear: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByEntrInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutInstallmentInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutInstallmentInput
-}
-
-export type InstallmentUncheckedCreateWithoutYearInput = {
-  id?: string
-  title: string
-  amount: number
-  installmentNo: number
-  entranceYearId: string
-  startDate: Date | string
-  endDate: Date | string
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInstallmentInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutInstallmentInput
-}
-
-export type InstallmentCreateOrConnectWithoutYearInput = {
-  where: Prisma.InstallmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput>
-}
-
-export type InstallmentCreateManyYearInputEnvelope = {
-  data: Prisma.InstallmentCreateManyYearInput | Prisma.InstallmentCreateManyYearInput[]
-  skipDuplicates?: boolean
-}
-
 export type InstallmentCreateWithoutEntranceYearInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
+  amount: number
   startDate: Date | string
   endDate: Date | string
   year: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByYearInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutInstallmentInput
   installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutInstallmentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutInstallmentInput
 }
 
 export type InstallmentUncheckedCreateWithoutEntranceYearInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
-  yearId: string
+  amount: number
   startDate: Date | string
   endDate: Date | string
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInstallmentInput
+  yearId: string
   installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutInstallmentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInstallmentInput
 }
 
 export type InstallmentCreateOrConnectWithoutEntranceYearInput = {
@@ -640,34 +606,38 @@ export type InstallmentCreateManyEntranceYearInputEnvelope = {
   skipDuplicates?: boolean
 }
 
-export type InstallmentUpsertWithWhereUniqueWithoutYearInput = {
+export type InstallmentCreateWithoutYearInput = {
+  id?: string
+  title: string
+  installmentNo: number
+  amount: number
+  startDate: Date | string
+  endDate: Date | string
+  entranceYear: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByEntrInput
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutInstallmentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutInstallmentInput
+}
+
+export type InstallmentUncheckedCreateWithoutYearInput = {
+  id?: string
+  title: string
+  installmentNo: number
+  amount: number
+  startDate: Date | string
+  endDate: Date | string
+  entranceYearId: string
+  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutInstallmentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInstallmentInput
+}
+
+export type InstallmentCreateOrConnectWithoutYearInput = {
   where: Prisma.InstallmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.InstallmentUpdateWithoutYearInput, Prisma.InstallmentUncheckedUpdateWithoutYearInput>
   create: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput>
 }
 
-export type InstallmentUpdateWithWhereUniqueWithoutYearInput = {
-  where: Prisma.InstallmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.InstallmentUpdateWithoutYearInput, Prisma.InstallmentUncheckedUpdateWithoutYearInput>
-}
-
-export type InstallmentUpdateManyWithWhereWithoutYearInput = {
-  where: Prisma.InstallmentScalarWhereInput
-  data: Prisma.XOR<Prisma.InstallmentUpdateManyMutationInput, Prisma.InstallmentUncheckedUpdateManyWithoutYearInput>
-}
-
-export type InstallmentScalarWhereInput = {
-  AND?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
-  OR?: Prisma.InstallmentScalarWhereInput[]
-  NOT?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
-  id?: Prisma.StringFilter<"Installment"> | string
-  title?: Prisma.StringFilter<"Installment"> | string
-  amount?: Prisma.FloatFilter<"Installment"> | number
-  installmentNo?: Prisma.IntFilter<"Installment"> | number
-  yearId?: Prisma.StringFilter<"Installment"> | string
-  entranceYearId?: Prisma.StringFilter<"Installment"> | string
-  startDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
-  endDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
+export type InstallmentCreateManyYearInputEnvelope = {
+  data: Prisma.InstallmentCreateManyYearInput | Prisma.InstallmentCreateManyYearInput[]
+  skipDuplicates?: boolean
 }
 
 export type InstallmentUpsertWithWhereUniqueWithoutEntranceYearInput = {
@@ -686,27 +656,57 @@ export type InstallmentUpdateManyWithWhereWithoutEntranceYearInput = {
   data: Prisma.XOR<Prisma.InstallmentUpdateManyMutationInput, Prisma.InstallmentUncheckedUpdateManyWithoutEntranceYearInput>
 }
 
+export type InstallmentScalarWhereInput = {
+  AND?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
+  OR?: Prisma.InstallmentScalarWhereInput[]
+  NOT?: Prisma.InstallmentScalarWhereInput | Prisma.InstallmentScalarWhereInput[]
+  id?: Prisma.StringFilter<"Installment"> | string
+  title?: Prisma.StringFilter<"Installment"> | string
+  installmentNo?: Prisma.IntFilter<"Installment"> | number
+  amount?: Prisma.FloatFilter<"Installment"> | number
+  startDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"Installment"> | Date | string
+  entranceYearId?: Prisma.StringFilter<"Installment"> | string
+  yearId?: Prisma.StringFilter<"Installment"> | string
+}
+
+export type InstallmentUpsertWithWhereUniqueWithoutYearInput = {
+  where: Prisma.InstallmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.InstallmentUpdateWithoutYearInput, Prisma.InstallmentUncheckedUpdateWithoutYearInput>
+  create: Prisma.XOR<Prisma.InstallmentCreateWithoutYearInput, Prisma.InstallmentUncheckedCreateWithoutYearInput>
+}
+
+export type InstallmentUpdateWithWhereUniqueWithoutYearInput = {
+  where: Prisma.InstallmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.InstallmentUpdateWithoutYearInput, Prisma.InstallmentUncheckedUpdateWithoutYearInput>
+}
+
+export type InstallmentUpdateManyWithWhereWithoutYearInput = {
+  where: Prisma.InstallmentScalarWhereInput
+  data: Prisma.XOR<Prisma.InstallmentUpdateManyMutationInput, Prisma.InstallmentUncheckedUpdateManyWithoutYearInput>
+}
+
 export type InstallmentCreateWithoutPaymentsInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
+  amount: number
   startDate: Date | string
   endDate: Date | string
-  year: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByYearInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByEntrInput
+  year: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByYearInput
   installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutInstallmentInput
 }
 
 export type InstallmentUncheckedCreateWithoutPaymentsInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
-  yearId: string
-  entranceYearId: string
+  amount: number
   startDate: Date | string
   endDate: Date | string
+  entranceYearId: string
+  yearId: string
   installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutInstallmentInput
 }
 
@@ -729,48 +729,48 @@ export type InstallmentUpdateToOneWithWhereWithoutPaymentsInput = {
 export type InstallmentUpdateWithoutPaymentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  year?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByYearNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByEntrNestedInput
+  year?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByYearNestedInput
   installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutInstallmentNestedInput
 }
 
 export type InstallmentUncheckedUpdateWithoutPaymentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  yearId?: Prisma.StringFieldUpdateOperationsInput | string
-  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  yearId?: Prisma.StringFieldUpdateOperationsInput | string
   installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutInstallmentNestedInput
 }
 
 export type InstallmentCreateWithoutInstallmentRemindersInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
+  amount: number
   startDate: Date | string
   endDate: Date | string
-  year: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByYearInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByEntrInput
+  year: Prisma.EducationalYearCreateNestedOneWithoutInstallmentsByYearInput
   payments?: Prisma.PaymentCreateNestedManyWithoutInstallmentInput
 }
 
 export type InstallmentUncheckedCreateWithoutInstallmentRemindersInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
-  yearId: string
-  entranceYearId: string
+  amount: number
   startDate: Date | string
   endDate: Date | string
+  entranceYearId: string
+  yearId: string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInstallmentInput
 }
 
@@ -793,113 +793,113 @@ export type InstallmentUpdateToOneWithWhereWithoutInstallmentRemindersInput = {
 export type InstallmentUpdateWithoutInstallmentRemindersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  year?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByYearNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByEntrNestedInput
+  year?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByYearNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutInstallmentNestedInput
 }
 
 export type InstallmentUncheckedUpdateWithoutInstallmentRemindersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  yearId?: Prisma.StringFieldUpdateOperationsInput | string
-  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  yearId?: Prisma.StringFieldUpdateOperationsInput | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutInstallmentNestedInput
-}
-
-export type InstallmentCreateManyYearInput = {
-  id?: string
-  title: string
-  amount: number
-  installmentNo: number
-  entranceYearId: string
-  startDate: Date | string
-  endDate: Date | string
 }
 
 export type InstallmentCreateManyEntranceYearInput = {
   id?: string
   title: string
-  amount: number
   installmentNo: number
-  yearId: string
+  amount: number
   startDate: Date | string
   endDate: Date | string
+  yearId: string
 }
 
-export type InstallmentUpdateWithoutYearInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByEntrNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutInstallmentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutInstallmentNestedInput
-}
-
-export type InstallmentUncheckedUpdateWithoutYearInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInstallmentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutInstallmentNestedInput
-}
-
-export type InstallmentUncheckedUpdateManyWithoutYearInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type InstallmentCreateManyYearInput = {
+  id?: string
+  title: string
+  installmentNo: number
+  amount: number
+  startDate: Date | string
+  endDate: Date | string
+  entranceYearId: string
 }
 
 export type InstallmentUpdateWithoutEntranceYearInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   year?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByYearNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutInstallmentNestedInput
   installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutInstallmentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutInstallmentNestedInput
 }
 
 export type InstallmentUncheckedUpdateWithoutEntranceYearInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  yearId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInstallmentNestedInput
+  yearId?: Prisma.StringFieldUpdateOperationsInput | string
   installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutInstallmentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInstallmentNestedInput
 }
 
 export type InstallmentUncheckedUpdateManyWithoutEntranceYearInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
-  yearId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  yearId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type InstallmentUpdateWithoutYearInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutInstallmentsByEntrNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutInstallmentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutInstallmentNestedInput
+}
+
+export type InstallmentUncheckedUpdateWithoutYearInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutInstallmentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInstallmentNestedInput
+}
+
+export type InstallmentUncheckedUpdateManyWithoutYearInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  installmentNo?: Prisma.IntFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -908,13 +908,13 @@ export type InstallmentUncheckedUpdateManyWithoutEntranceYearInput = {
  */
 
 export type InstallmentCountOutputType = {
-  payments: number
   installmentReminders: number
+  payments: number
 }
 
 export type InstallmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  payments?: boolean | InstallmentCountOutputTypeCountPaymentsArgs
   installmentReminders?: boolean | InstallmentCountOutputTypeCountInstallmentRemindersArgs
+  payments?: boolean | InstallmentCountOutputTypeCountPaymentsArgs
 }
 
 /**
@@ -930,105 +930,105 @@ export type InstallmentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
 /**
  * InstallmentCountOutputType without action
  */
-export type InstallmentCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentWhereInput
+export type InstallmentCountOutputTypeCountInstallmentRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InstallmentReminderWhereInput
 }
 
 /**
  * InstallmentCountOutputType without action
  */
-export type InstallmentCountOutputTypeCountInstallmentRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InstallmentReminderWhereInput
+export type InstallmentCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
 }
 
 
 export type InstallmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  amount?: boolean
   installmentNo?: boolean
-  yearId?: boolean
-  entranceYearId?: boolean
+  amount?: boolean
   startDate?: boolean
   endDate?: boolean
-  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
+  entranceYearId?: boolean
+  yearId?: boolean
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  payments?: boolean | Prisma.Installment$paymentsArgs<ExtArgs>
+  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
   installmentReminders?: boolean | Prisma.Installment$installmentRemindersArgs<ExtArgs>
+  payments?: boolean | Prisma.Installment$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.InstallmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["installment"]>
 
 export type InstallmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  amount?: boolean
   installmentNo?: boolean
-  yearId?: boolean
-  entranceYearId?: boolean
+  amount?: boolean
   startDate?: boolean
   endDate?: boolean
-  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
+  entranceYearId?: boolean
+  yearId?: boolean
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
+  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["installment"]>
 
 export type InstallmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  amount?: boolean
   installmentNo?: boolean
-  yearId?: boolean
-  entranceYearId?: boolean
+  amount?: boolean
   startDate?: boolean
   endDate?: boolean
-  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
+  entranceYearId?: boolean
+  yearId?: boolean
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
+  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["installment"]>
 
 export type InstallmentSelectScalar = {
   id?: boolean
   title?: boolean
-  amount?: boolean
   installmentNo?: boolean
-  yearId?: boolean
-  entranceYearId?: boolean
+  amount?: boolean
   startDate?: boolean
   endDate?: boolean
+  entranceYearId?: boolean
+  yearId?: boolean
 }
 
-export type InstallmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "amount" | "installmentNo" | "yearId" | "entranceYearId" | "startDate" | "endDate", ExtArgs["result"]["installment"]>
+export type InstallmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "installmentNo" | "amount" | "startDate" | "endDate" | "entranceYearId" | "yearId", ExtArgs["result"]["installment"]>
 export type InstallmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  payments?: boolean | Prisma.Installment$paymentsArgs<ExtArgs>
+  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
   installmentReminders?: boolean | Prisma.Installment$installmentRemindersArgs<ExtArgs>
+  payments?: boolean | Prisma.Installment$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.InstallmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InstallmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
+  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
 }
 export type InstallmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
+  year?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
 }
 
 export type $InstallmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Installment"
   objects: {
-    year: Prisma.$EducationalYearPayload<ExtArgs>
     entranceYear: Prisma.$EducationalYearPayload<ExtArgs>
-    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    year: Prisma.$EducationalYearPayload<ExtArgs>
     installmentReminders: Prisma.$InstallmentReminderPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
-    amount: number
     installmentNo: number
-    yearId: string
-    entranceYearId: string
+    amount: number
     startDate: Date
     endDate: Date
+    entranceYearId: string
+    yearId: string
   }, ExtArgs["result"]["installment"]>
   composites: {}
 }
@@ -1423,10 +1423,10 @@ readonly fields: InstallmentFieldRefs;
  */
 export interface Prisma__InstallmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  year<T extends Prisma.EducationalYearDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EducationalYearDefaultArgs<ExtArgs>>): Prisma.Prisma__EducationalYearClient<runtime.Types.Result.GetResult<Prisma.$EducationalYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   entranceYear<T extends Prisma.EducationalYearDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EducationalYearDefaultArgs<ExtArgs>>): Prisma.Prisma__EducationalYearClient<runtime.Types.Result.GetResult<Prisma.$EducationalYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  payments<T extends Prisma.Installment$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Installment$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  year<T extends Prisma.EducationalYearDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EducationalYearDefaultArgs<ExtArgs>>): Prisma.Prisma__EducationalYearClient<runtime.Types.Result.GetResult<Prisma.$EducationalYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   installmentReminders<T extends Prisma.Installment$installmentRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Installment$installmentRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallmentReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.Installment$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Installment$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1458,12 +1458,12 @@ export interface Prisma__InstallmentClient<T, Null = never, ExtArgs extends runt
 export interface InstallmentFieldRefs {
   readonly id: Prisma.FieldRef<"Installment", 'String'>
   readonly title: Prisma.FieldRef<"Installment", 'String'>
-  readonly amount: Prisma.FieldRef<"Installment", 'Float'>
   readonly installmentNo: Prisma.FieldRef<"Installment", 'Int'>
-  readonly yearId: Prisma.FieldRef<"Installment", 'String'>
-  readonly entranceYearId: Prisma.FieldRef<"Installment", 'String'>
+  readonly amount: Prisma.FieldRef<"Installment", 'Float'>
   readonly startDate: Prisma.FieldRef<"Installment", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Installment", 'DateTime'>
+  readonly entranceYearId: Prisma.FieldRef<"Installment", 'String'>
+  readonly yearId: Prisma.FieldRef<"Installment", 'String'>
 }
     
 
@@ -1860,30 +1860,6 @@ export type InstallmentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Installment.payments
- */
-export type Installment$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Payment
-   */
-  select?: Prisma.PaymentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Payment
-   */
-  omit?: Prisma.PaymentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentInclude<ExtArgs> | null
-  where?: Prisma.PaymentWhereInput
-  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
-}
-
-/**
  * Installment.installmentReminders
  */
 export type Installment$installmentRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1905,6 +1881,30 @@ export type Installment$installmentRemindersArgs<ExtArgs extends runtime.Types.E
   take?: number
   skip?: number
   distinct?: Prisma.InstallmentReminderScalarFieldEnum | Prisma.InstallmentReminderScalarFieldEnum[]
+}
+
+/**
+ * Installment.payments
+ */
+export type Installment$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
 }
 
 /**

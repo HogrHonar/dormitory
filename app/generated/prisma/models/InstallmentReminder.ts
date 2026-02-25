@@ -182,8 +182,8 @@ export type InstallmentReminderWhereInput = {
   installmentId?: Prisma.StringFilter<"InstallmentReminder"> | string
   reminderStage?: Prisma.EnumReminderStageFilter<"InstallmentReminder"> | $Enums.ReminderStage
   sentAt?: Prisma.DateTimeFilter<"InstallmentReminder"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   installment?: Prisma.XOR<Prisma.InstallmentScalarRelationFilter, Prisma.InstallmentWhereInput>
+  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
 }
 
 export type InstallmentReminderOrderByWithRelationInput = {
@@ -192,8 +192,8 @@ export type InstallmentReminderOrderByWithRelationInput = {
   installmentId?: Prisma.SortOrder
   reminderStage?: Prisma.SortOrder
   sentAt?: Prisma.SortOrder
-  student?: Prisma.StudentOrderByWithRelationInput
   installment?: Prisma.InstallmentOrderByWithRelationInput
+  student?: Prisma.StudentOrderByWithRelationInput
 }
 
 export type InstallmentReminderWhereUniqueInput = Prisma.AtLeast<{
@@ -206,8 +206,8 @@ export type InstallmentReminderWhereUniqueInput = Prisma.AtLeast<{
   installmentId?: Prisma.StringFilter<"InstallmentReminder"> | string
   reminderStage?: Prisma.EnumReminderStageFilter<"InstallmentReminder"> | $Enums.ReminderStage
   sentAt?: Prisma.DateTimeFilter<"InstallmentReminder"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   installment?: Prisma.XOR<Prisma.InstallmentScalarRelationFilter, Prisma.InstallmentWhereInput>
+  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
 }, "id" | "studentId_installmentId_reminderStage">
 
 export type InstallmentReminderOrderByWithAggregationInput = {
@@ -236,8 +236,8 @@ export type InstallmentReminderCreateInput = {
   id?: string
   reminderStage: $Enums.ReminderStage
   sentAt?: Date | string
-  student: Prisma.StudentCreateNestedOneWithoutInstallmentRemindersInput
   installment: Prisma.InstallmentCreateNestedOneWithoutInstallmentRemindersInput
+  student: Prisma.StudentCreateNestedOneWithoutInstallmentRemindersInput
 }
 
 export type InstallmentReminderUncheckedCreateInput = {
@@ -252,8 +252,8 @@ export type InstallmentReminderUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   reminderStage?: Prisma.EnumReminderStageFieldUpdateOperationsInput | $Enums.ReminderStage
   sentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneRequiredWithoutInstallmentRemindersNestedInput
   installment?: Prisma.InstallmentUpdateOneRequiredWithoutInstallmentRemindersNestedInput
+  student?: Prisma.StudentUpdateOneRequiredWithoutInstallmentRemindersNestedInput
 }
 
 export type InstallmentReminderUncheckedUpdateInput = {
@@ -569,8 +569,8 @@ export type InstallmentReminderSelect<ExtArgs extends runtime.Types.Extensions.I
   installmentId?: boolean
   reminderStage?: boolean
   sentAt?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   installment?: boolean | Prisma.InstallmentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["installmentReminder"]>
 
 export type InstallmentReminderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -579,8 +579,8 @@ export type InstallmentReminderSelectCreateManyAndReturn<ExtArgs extends runtime
   installmentId?: boolean
   reminderStage?: boolean
   sentAt?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   installment?: boolean | Prisma.InstallmentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["installmentReminder"]>
 
 export type InstallmentReminderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -589,8 +589,8 @@ export type InstallmentReminderSelectUpdateManyAndReturn<ExtArgs extends runtime
   installmentId?: boolean
   reminderStage?: boolean
   sentAt?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   installment?: boolean | Prisma.InstallmentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["installmentReminder"]>
 
 export type InstallmentReminderSelectScalar = {
@@ -603,23 +603,23 @@ export type InstallmentReminderSelectScalar = {
 
 export type InstallmentReminderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "installmentId" | "reminderStage" | "sentAt", ExtArgs["result"]["installmentReminder"]>
 export type InstallmentReminderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   installment?: boolean | Prisma.InstallmentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }
 export type InstallmentReminderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   installment?: boolean | Prisma.InstallmentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }
 export type InstallmentReminderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   installment?: boolean | Prisma.InstallmentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }
 
 export type $InstallmentReminderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "InstallmentReminder"
   objects: {
-    student: Prisma.$StudentPayload<ExtArgs>
     installment: Prisma.$InstallmentPayload<ExtArgs>
+    student: Prisma.$StudentPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1021,8 +1021,8 @@ readonly fields: InstallmentReminderFieldRefs;
  */
 export interface Prisma__InstallmentReminderClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   installment<T extends Prisma.InstallmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstallmentDefaultArgs<ExtArgs>>): Prisma.Prisma__InstallmentClient<runtime.Types.Result.GetResult<Prisma.$InstallmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  student<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

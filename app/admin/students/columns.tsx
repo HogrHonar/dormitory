@@ -21,6 +21,7 @@ export type AdminStudentRow = {
   fullNameEn: string;
   fullNameKu: string;
   mobileNo: string;
+  mobileNo2: string;
   department: {
     name: string;
   };
@@ -30,7 +31,6 @@ export type AdminStudentRow = {
   entranceYear: {
     name: string;
   };
-
 };
 
 export const columns: ColumnDef<AdminStudentRow>[] = [
@@ -54,6 +54,10 @@ export const columns: ColumnDef<AdminStudentRow>[] = [
   {
     accessorKey: "mobileNo",
     header: () => <div className="text-right">مۆبایل</div>,
+  },
+  {
+    accessorKey: "mobileNo2",
+    header: () => <div className="text-right">بەخێوکەر</div>,
   },
   {
     accessorKey: "gender",

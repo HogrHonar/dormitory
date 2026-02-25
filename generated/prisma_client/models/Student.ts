@@ -32,13 +32,14 @@ export type StudentMinAggregateOutputType = {
   mobileNo: string | null
   gender: string | null
   email: string | null
-  isActive: boolean | null
   departmentId: string | null
   entranceYearId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  isActive: boolean | null
   roomId: string | null
+  mobileNo2: string | null
 }
 
 export type StudentMaxAggregateOutputType = {
@@ -49,13 +50,14 @@ export type StudentMaxAggregateOutputType = {
   mobileNo: string | null
   gender: string | null
   email: string | null
-  isActive: boolean | null
   departmentId: string | null
   entranceYearId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  isActive: boolean | null
   roomId: string | null
+  mobileNo2: string | null
 }
 
 export type StudentCountAggregateOutputType = {
@@ -66,13 +68,14 @@ export type StudentCountAggregateOutputType = {
   mobileNo: number
   gender: number
   email: number
-  isActive: number
   departmentId: number
   entranceYearId: number
   createdAt: number
   updatedAt: number
   userId: number
+  isActive: number
   roomId: number
+  mobileNo2: number
   _all: number
 }
 
@@ -85,13 +88,14 @@ export type StudentMinAggregateInputType = {
   mobileNo?: true
   gender?: true
   email?: true
-  isActive?: true
   departmentId?: true
   entranceYearId?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  isActive?: true
   roomId?: true
+  mobileNo2?: true
 }
 
 export type StudentMaxAggregateInputType = {
@@ -102,13 +106,14 @@ export type StudentMaxAggregateInputType = {
   mobileNo?: true
   gender?: true
   email?: true
-  isActive?: true
   departmentId?: true
   entranceYearId?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  isActive?: true
   roomId?: true
+  mobileNo2?: true
 }
 
 export type StudentCountAggregateInputType = {
@@ -119,13 +124,14 @@ export type StudentCountAggregateInputType = {
   mobileNo?: true
   gender?: true
   email?: true
-  isActive?: true
   departmentId?: true
   entranceYearId?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  isActive?: true
   roomId?: true
+  mobileNo2?: true
   _all?: true
 }
 
@@ -209,13 +215,14 @@ export type StudentGroupByOutputType = {
   mobileNo: string
   gender: string
   email: string
-  isActive: boolean
   departmentId: string
   entranceYearId: string
   createdAt: Date
   updatedAt: Date
   userId: string | null
+  isActive: boolean
   roomId: string | null
+  mobileNo2: string | null
   _count: StudentCountAggregateOutputType | null
   _min: StudentMinAggregateOutputType | null
   _max: StudentMaxAggregateOutputType | null
@@ -247,20 +254,21 @@ export type StudentWhereInput = {
   mobileNo?: Prisma.StringFilter<"Student"> | string
   gender?: Prisma.StringFilter<"Student"> | string
   email?: Prisma.StringFilter<"Student"> | string
-  isActive?: Prisma.BoolFilter<"Student"> | boolean
   departmentId?: Prisma.StringFilter<"Student"> | string
   entranceYearId?: Prisma.StringFilter<"Student"> | string
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   userId?: Prisma.StringNullableFilter<"Student"> | string | null
+  isActive?: Prisma.BoolFilter<"Student"> | boolean
   roomId?: Prisma.StringNullableFilter<"Student"> | string | null
+  mobileNo2?: Prisma.StringNullableFilter<"Student"> | string | null
+  dormInsurances?: Prisma.DormInsuranceListRelationFilter
+  installmentReminders?: Prisma.InstallmentReminderListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
   department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   entranceYear?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
-  payments?: Prisma.PaymentListRelationFilter
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  installmentReminders?: Prisma.InstallmentReminderListRelationFilter
   room?: Prisma.XOR<Prisma.RoomNullableScalarRelationFilter, Prisma.RoomWhereInput> | null
-  dormInsurances?: Prisma.DormInsuranceListRelationFilter
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type StudentOrderByWithRelationInput = {
@@ -271,20 +279,21 @@ export type StudentOrderByWithRelationInput = {
   mobileNo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   entranceYearId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   roomId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mobileNo2?: Prisma.SortOrderInput | Prisma.SortOrder
+  dormInsurances?: Prisma.DormInsuranceOrderByRelationAggregateInput
+  installmentReminders?: Prisma.InstallmentReminderOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
   department?: Prisma.DepartmentOrderByWithRelationInput
   entranceYear?: Prisma.EducationalYearOrderByWithRelationInput
-  payments?: Prisma.PaymentOrderByRelationAggregateInput
-  user?: Prisma.UserOrderByWithRelationInput
-  installmentReminders?: Prisma.InstallmentReminderOrderByRelationAggregateInput
   room?: Prisma.RoomOrderByWithRelationInput
-  dormInsurances?: Prisma.DormInsuranceOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -298,20 +307,21 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   mobileNo?: Prisma.StringFilter<"Student"> | string
   gender?: Prisma.StringFilter<"Student"> | string
   email?: Prisma.StringFilter<"Student"> | string
-  isActive?: Prisma.BoolFilter<"Student"> | boolean
   departmentId?: Prisma.StringFilter<"Student"> | string
   entranceYearId?: Prisma.StringFilter<"Student"> | string
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   userId?: Prisma.StringNullableFilter<"Student"> | string | null
+  isActive?: Prisma.BoolFilter<"Student"> | boolean
   roomId?: Prisma.StringNullableFilter<"Student"> | string | null
+  mobileNo2?: Prisma.StringNullableFilter<"Student"> | string | null
+  dormInsurances?: Prisma.DormInsuranceListRelationFilter
+  installmentReminders?: Prisma.InstallmentReminderListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
   department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   entranceYear?: Prisma.XOR<Prisma.EducationalYearScalarRelationFilter, Prisma.EducationalYearWhereInput>
-  payments?: Prisma.PaymentListRelationFilter
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  installmentReminders?: Prisma.InstallmentReminderListRelationFilter
   room?: Prisma.XOR<Prisma.RoomNullableScalarRelationFilter, Prisma.RoomWhereInput> | null
-  dormInsurances?: Prisma.DormInsuranceListRelationFilter
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "studentCode">
 
 export type StudentOrderByWithAggregationInput = {
@@ -322,13 +332,14 @@ export type StudentOrderByWithAggregationInput = {
   mobileNo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   entranceYearId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   roomId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mobileNo2?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StudentCountOrderByAggregateInput
   _max?: Prisma.StudentMaxOrderByAggregateInput
   _min?: Prisma.StudentMinOrderByAggregateInput
@@ -345,13 +356,14 @@ export type StudentScalarWhereWithAggregatesInput = {
   mobileNo?: Prisma.StringWithAggregatesFilter<"Student"> | string
   gender?: Prisma.StringWithAggregatesFilter<"Student"> | string
   email?: Prisma.StringWithAggregatesFilter<"Student"> | string
-  isActive?: Prisma.BoolWithAggregatesFilter<"Student"> | boolean
   departmentId?: Prisma.StringWithAggregatesFilter<"Student"> | string
   entranceYearId?: Prisma.StringWithAggregatesFilter<"Student"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
   userId?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
+  isActive?: Prisma.BoolWithAggregatesFilter<"Student"> | boolean
   roomId?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
+  mobileNo2?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
 }
 
 export type StudentCreateInput = {
@@ -362,16 +374,17 @@ export type StudentCreateInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
+  mobileNo2?: string | null
+  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
-  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
   room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
-  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateInput = {
@@ -382,16 +395,17 @@ export type StudentUncheckedCreateInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUpdateInput = {
@@ -402,16 +416,17 @@ export type StudentUpdateInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
-  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
   room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
-  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateInput = {
@@ -422,16 +437,17 @@ export type StudentUncheckedUpdateInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateManyInput = {
@@ -442,13 +458,14 @@ export type StudentCreateManyInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
+  mobileNo2?: string | null
 }
 
 export type StudentUpdateManyMutationInput = {
@@ -459,9 +476,10 @@ export type StudentUpdateManyMutationInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StudentUncheckedUpdateManyInput = {
@@ -472,13 +490,14 @@ export type StudentUncheckedUpdateManyInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StudentListRelationFilter = {
@@ -499,13 +518,14 @@ export type StudentCountOrderByAggregateInput = {
   mobileNo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   entranceYearId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   roomId?: Prisma.SortOrder
+  mobileNo2?: Prisma.SortOrder
 }
 
 export type StudentMaxOrderByAggregateInput = {
@@ -516,13 +536,14 @@ export type StudentMaxOrderByAggregateInput = {
   mobileNo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   entranceYearId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   roomId?: Prisma.SortOrder
+  mobileNo2?: Prisma.SortOrder
 }
 
 export type StudentMinOrderByAggregateInput = {
@@ -533,13 +554,14 @@ export type StudentMinOrderByAggregateInput = {
   mobileNo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   entranceYearId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   roomId?: Prisma.SortOrder
+  mobileNo2?: Prisma.SortOrder
 }
 
 export type StudentScalarRelationFilter = {
@@ -765,15 +787,16 @@ export type StudentCreateWithoutUserInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
+  mobileNo2?: string | null
+  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
   room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
-  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutUserInput = {
@@ -784,15 +807,16 @@ export type StudentUncheckedCreateWithoutUserInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
   roomId?: string | null
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutUserInput = {
@@ -832,13 +856,14 @@ export type StudentScalarWhereInput = {
   mobileNo?: Prisma.StringFilter<"Student"> | string
   gender?: Prisma.StringFilter<"Student"> | string
   email?: Prisma.StringFilter<"Student"> | string
-  isActive?: Prisma.BoolFilter<"Student"> | boolean
   departmentId?: Prisma.StringFilter<"Student"> | string
   entranceYearId?: Prisma.StringFilter<"Student"> | string
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   userId?: Prisma.StringNullableFilter<"Student"> | string | null
+  isActive?: Prisma.BoolFilter<"Student"> | boolean
   roomId?: Prisma.StringNullableFilter<"Student"> | string | null
+  mobileNo2?: Prisma.StringNullableFilter<"Student"> | string | null
 }
 
 export type StudentCreateWithoutEntranceYearInput = {
@@ -849,15 +874,16 @@ export type StudentCreateWithoutEntranceYearInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
-  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
-  room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
+  isActive?: boolean
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
+  department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
+  room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
+  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutEntranceYearInput = {
@@ -868,15 +894,16 @@ export type StudentUncheckedCreateWithoutEntranceYearInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutEntranceYearInput = {
@@ -913,15 +940,16 @@ export type StudentCreateWithoutRoomInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
+  mobileNo2?: string | null
+  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   user?: Prisma.UserCreateNestedOneWithoutStudentsInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
-  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutRoomInput = {
@@ -932,15 +960,16 @@ export type StudentUncheckedCreateWithoutRoomInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  isActive?: boolean
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutRoomInput = {
@@ -977,15 +1006,16 @@ export type StudentCreateWithoutDepartmentInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
-  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
-  room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
+  isActive?: boolean
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
+  entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
+  room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
+  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutDepartmentInput = {
@@ -996,15 +1026,16 @@ export type StudentUncheckedCreateWithoutDepartmentInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutDepartmentInput = {
@@ -1041,15 +1072,16 @@ export type StudentCreateWithoutPaymentsInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
+  mobileNo2?: string | null
+  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
   department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
-  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
   room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
-  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutPaymentsInput = {
@@ -1060,15 +1092,16 @@ export type StudentUncheckedCreateWithoutPaymentsInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
-  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedCreateNestedManyWithoutStudentInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutPaymentsInput = {
@@ -1095,15 +1128,16 @@ export type StudentUpdateWithoutPaymentsInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
   department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
-  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
   room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
-  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutPaymentsInput = {
@@ -1114,15 +1148,16 @@ export type StudentUncheckedUpdateWithoutPaymentsInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateWithoutDormInsurancesInput = {
@@ -1133,15 +1168,16 @@ export type StudentCreateWithoutDormInsurancesInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
+  mobileNo2?: string | null
+  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
-  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
-  installmentReminders?: Prisma.InstallmentReminderCreateNestedManyWithoutStudentInput
   room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
+  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutDormInsurancesInput = {
@@ -1152,15 +1188,16 @@ export type StudentUncheckedCreateWithoutDormInsurancesInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
+  mobileNo2?: string | null
   installmentReminders?: Prisma.InstallmentReminderUncheckedCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutDormInsurancesInput = {
@@ -1187,15 +1224,16 @@ export type StudentUpdateWithoutDormInsurancesInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
-  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
   room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
+  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutDormInsurancesInput = {
@@ -1206,15 +1244,16 @@ export type StudentUncheckedUpdateWithoutDormInsurancesInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateWithoutInstallmentRemindersInput = {
@@ -1225,15 +1264,16 @@ export type StudentCreateWithoutInstallmentRemindersInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
+  mobileNo2?: string | null
+  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   department: Prisma.DepartmentCreateNestedOneWithoutStudentsInput
   entranceYear: Prisma.EducationalYearCreateNestedOneWithoutStudentsInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
-  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
   room?: Prisma.RoomCreateNestedOneWithoutStudentsInput
-  dormInsurances?: Prisma.DormInsuranceCreateNestedManyWithoutStudentInput
+  user?: Prisma.UserCreateNestedOneWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutInstallmentRemindersInput = {
@@ -1244,15 +1284,16 @@ export type StudentUncheckedCreateWithoutInstallmentRemindersInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
+  mobileNo2?: string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedCreateNestedManyWithoutStudentInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutInstallmentRemindersInput = {
@@ -1279,15 +1320,16 @@ export type StudentUpdateWithoutInstallmentRemindersInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
-  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
   room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
-  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutInstallmentRemindersInput = {
@@ -1298,15 +1340,16 @@ export type StudentUncheckedUpdateWithoutInstallmentRemindersInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateManyUserInput = {
@@ -1317,12 +1360,13 @@ export type StudentCreateManyUserInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  isActive?: boolean
   roomId?: string | null
+  mobileNo2?: string | null
 }
 
 export type StudentUpdateWithoutUserInput = {
@@ -1333,15 +1377,16 @@ export type StudentUpdateWithoutUserInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
   room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
-  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutUserInput = {
@@ -1352,15 +1397,16 @@ export type StudentUncheckedUpdateWithoutUserInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateManyWithoutUserInput = {
@@ -1371,12 +1417,13 @@ export type StudentUncheckedUpdateManyWithoutUserInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StudentCreateManyEntranceYearInput = {
@@ -1387,12 +1434,13 @@ export type StudentCreateManyEntranceYearInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
+  mobileNo2?: string | null
 }
 
 export type StudentUpdateWithoutEntranceYearInput = {
@@ -1403,15 +1451,16 @@ export type StudentUpdateWithoutEntranceYearInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
-  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
-  room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
+  room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
+  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutEntranceYearInput = {
@@ -1422,15 +1471,16 @@ export type StudentUncheckedUpdateWithoutEntranceYearInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateManyWithoutEntranceYearInput = {
@@ -1441,12 +1491,13 @@ export type StudentUncheckedUpdateManyWithoutEntranceYearInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StudentCreateManyRoomInput = {
@@ -1457,12 +1508,13 @@ export type StudentCreateManyRoomInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   departmentId: string
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
+  mobileNo2?: string | null
 }
 
 export type StudentUpdateWithoutRoomInput = {
@@ -1473,15 +1525,16 @@ export type StudentUpdateWithoutRoomInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   department?: Prisma.DepartmentUpdateOneRequiredWithoutStudentsNestedInput
   entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
-  dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutRoomInput = {
@@ -1492,15 +1545,16 @@ export type StudentUncheckedUpdateWithoutRoomInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateManyWithoutRoomInput = {
@@ -1511,12 +1565,13 @@ export type StudentUncheckedUpdateManyWithoutRoomInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StudentCreateManyDepartmentInput = {
@@ -1527,12 +1582,13 @@ export type StudentCreateManyDepartmentInput = {
   mobileNo: string
   gender: string
   email: string
-  isActive?: boolean
   entranceYearId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   userId?: string | null
+  isActive?: boolean
   roomId?: string | null
+  mobileNo2?: string | null
 }
 
 export type StudentUpdateWithoutDepartmentInput = {
@@ -1543,15 +1599,16 @@ export type StudentUpdateWithoutDepartmentInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
-  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
-  room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
+  entranceYear?: Prisma.EducationalYearUpdateOneRequiredWithoutStudentsNestedInput
+  room?: Prisma.RoomUpdateOneWithoutStudentsNestedInput
+  user?: Prisma.UserUpdateOneWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutDepartmentInput = {
@@ -1562,15 +1619,16 @@ export type StudentUncheckedUpdateWithoutDepartmentInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
-  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dormInsurances?: Prisma.DormInsuranceUncheckedUpdateManyWithoutStudentNestedInput
+  installmentReminders?: Prisma.InstallmentReminderUncheckedUpdateManyWithoutStudentNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateManyWithoutDepartmentInput = {
@@ -1581,12 +1639,13 @@ export type StudentUncheckedUpdateManyWithoutDepartmentInput = {
   mobileNo?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   entranceYearId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNo2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1595,15 +1654,15 @@ export type StudentUncheckedUpdateManyWithoutDepartmentInput = {
  */
 
 export type StudentCountOutputType = {
-  payments: number
-  installmentReminders: number
   dormInsurances: number
+  installmentReminders: number
+  payments: number
 }
 
 export type StudentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  payments?: boolean | StudentCountOutputTypeCountPaymentsArgs
-  installmentReminders?: boolean | StudentCountOutputTypeCountInstallmentRemindersArgs
   dormInsurances?: boolean | StudentCountOutputTypeCountDormInsurancesArgs
+  installmentReminders?: boolean | StudentCountOutputTypeCountInstallmentRemindersArgs
+  payments?: boolean | StudentCountOutputTypeCountPaymentsArgs
 }
 
 /**
@@ -1619,8 +1678,8 @@ export type StudentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * StudentCountOutputType without action
  */
-export type StudentCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentWhereInput
+export type StudentCountOutputTypeCountDormInsurancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DormInsuranceWhereInput
 }
 
 /**
@@ -1633,8 +1692,8 @@ export type StudentCountOutputTypeCountInstallmentRemindersArgs<ExtArgs extends 
 /**
  * StudentCountOutputType without action
  */
-export type StudentCountOutputTypeCountDormInsurancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DormInsuranceWhereInput
+export type StudentCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
 }
 
 
@@ -1646,20 +1705,21 @@ export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   mobileNo?: boolean
   gender?: boolean
   email?: boolean
-  isActive?: boolean
   departmentId?: boolean
   entranceYearId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  isActive?: boolean
   roomId?: boolean
+  mobileNo2?: boolean
+  dormInsurances?: boolean | Prisma.Student$dormInsurancesArgs<ExtArgs>
+  installmentReminders?: boolean | Prisma.Student$installmentRemindersArgs<ExtArgs>
+  payments?: boolean | Prisma.Student$paymentsArgs<ExtArgs>
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  payments?: boolean | Prisma.Student$paymentsArgs<ExtArgs>
-  user?: boolean | Prisma.Student$userArgs<ExtArgs>
-  installmentReminders?: boolean | Prisma.Student$installmentRemindersArgs<ExtArgs>
   room?: boolean | Prisma.Student$roomArgs<ExtArgs>
-  dormInsurances?: boolean | Prisma.Student$dormInsurancesArgs<ExtArgs>
+  user?: boolean | Prisma.Student$userArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
@@ -1671,17 +1731,18 @@ export type StudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   mobileNo?: boolean
   gender?: boolean
   email?: boolean
-  isActive?: boolean
   departmentId?: boolean
   entranceYearId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  isActive?: boolean
   roomId?: boolean
+  mobileNo2?: boolean
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.Student$userArgs<ExtArgs>
   room?: boolean | Prisma.Student$roomArgs<ExtArgs>
+  user?: boolean | Prisma.Student$userArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
 export type StudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1692,17 +1753,18 @@ export type StudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   mobileNo?: boolean
   gender?: boolean
   email?: boolean
-  isActive?: boolean
   departmentId?: boolean
   entranceYearId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  isActive?: boolean
   roomId?: boolean
+  mobileNo2?: boolean
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.Student$userArgs<ExtArgs>
   room?: boolean | Prisma.Student$roomArgs<ExtArgs>
+  user?: boolean | Prisma.Student$userArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
 export type StudentSelectScalar = {
@@ -1713,49 +1775,50 @@ export type StudentSelectScalar = {
   mobileNo?: boolean
   gender?: boolean
   email?: boolean
-  isActive?: boolean
   departmentId?: boolean
   entranceYearId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  isActive?: boolean
   roomId?: boolean
+  mobileNo2?: boolean
 }
 
-export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentCode" | "fullNameEn" | "fullNameKu" | "mobileNo" | "gender" | "email" | "isActive" | "departmentId" | "entranceYearId" | "createdAt" | "updatedAt" | "userId" | "roomId", ExtArgs["result"]["student"]>
+export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentCode" | "fullNameEn" | "fullNameKu" | "mobileNo" | "gender" | "email" | "departmentId" | "entranceYearId" | "createdAt" | "updatedAt" | "userId" | "isActive" | "roomId" | "mobileNo2", ExtArgs["result"]["student"]>
 export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  dormInsurances?: boolean | Prisma.Student$dormInsurancesArgs<ExtArgs>
+  installmentReminders?: boolean | Prisma.Student$installmentRemindersArgs<ExtArgs>
+  payments?: boolean | Prisma.Student$paymentsArgs<ExtArgs>
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  payments?: boolean | Prisma.Student$paymentsArgs<ExtArgs>
-  user?: boolean | Prisma.Student$userArgs<ExtArgs>
-  installmentReminders?: boolean | Prisma.Student$installmentRemindersArgs<ExtArgs>
   room?: boolean | Prisma.Student$roomArgs<ExtArgs>
-  dormInsurances?: boolean | Prisma.Student$dormInsurancesArgs<ExtArgs>
+  user?: boolean | Prisma.Student$userArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.Student$userArgs<ExtArgs>
   room?: boolean | Prisma.Student$roomArgs<ExtArgs>
+  user?: boolean | Prisma.Student$userArgs<ExtArgs>
 }
 export type StudentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   entranceYear?: boolean | Prisma.EducationalYearDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.Student$userArgs<ExtArgs>
   room?: boolean | Prisma.Student$roomArgs<ExtArgs>
+  user?: boolean | Prisma.Student$userArgs<ExtArgs>
 }
 
 export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Student"
   objects: {
+    dormInsurances: Prisma.$DormInsurancePayload<ExtArgs>[]
+    installmentReminders: Prisma.$InstallmentReminderPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
     department: Prisma.$DepartmentPayload<ExtArgs>
     entranceYear: Prisma.$EducationalYearPayload<ExtArgs>
-    payments: Prisma.$PaymentPayload<ExtArgs>[]
-    user: Prisma.$UserPayload<ExtArgs> | null
-    installmentReminders: Prisma.$InstallmentReminderPayload<ExtArgs>[]
     room: Prisma.$RoomPayload<ExtArgs> | null
-    dormInsurances: Prisma.$DormInsurancePayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1765,13 +1828,14 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     mobileNo: string
     gender: string
     email: string
-    isActive: boolean
     departmentId: string
     entranceYearId: string
     createdAt: Date
     updatedAt: Date
     userId: string | null
+    isActive: boolean
     roomId: string | null
+    mobileNo2: string | null
   }, ExtArgs["result"]["student"]>
   composites: {}
 }
@@ -2166,13 +2230,13 @@ readonly fields: StudentFieldRefs;
  */
 export interface Prisma__StudentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  dormInsurances<T extends Prisma.Student$dormInsurancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$dormInsurancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DormInsurancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  installmentReminders<T extends Prisma.Student$installmentRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$installmentRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallmentReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.Student$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   department<T extends Prisma.DepartmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   entranceYear<T extends Prisma.EducationalYearDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EducationalYearDefaultArgs<ExtArgs>>): Prisma.Prisma__EducationalYearClient<runtime.Types.Result.GetResult<Prisma.$EducationalYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  payments<T extends Prisma.Student$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user<T extends Prisma.Student$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  installmentReminders<T extends Prisma.Student$installmentRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$installmentRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InstallmentReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   room<T extends Prisma.Student$roomArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$roomArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  dormInsurances<T extends Prisma.Student$dormInsurancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$dormInsurancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DormInsurancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.Student$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2209,13 +2273,14 @@ export interface StudentFieldRefs {
   readonly mobileNo: Prisma.FieldRef<"Student", 'String'>
   readonly gender: Prisma.FieldRef<"Student", 'String'>
   readonly email: Prisma.FieldRef<"Student", 'String'>
-  readonly isActive: Prisma.FieldRef<"Student", 'Boolean'>
   readonly departmentId: Prisma.FieldRef<"Student", 'String'>
   readonly entranceYearId: Prisma.FieldRef<"Student", 'String'>
   readonly createdAt: Prisma.FieldRef<"Student", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Student", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Student", 'String'>
+  readonly isActive: Prisma.FieldRef<"Student", 'Boolean'>
   readonly roomId: Prisma.FieldRef<"Student", 'String'>
+  readonly mobileNo2: Prisma.FieldRef<"Student", 'String'>
 }
     
 
@@ -2612,46 +2677,27 @@ export type StudentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Student.payments
+ * Student.dormInsurances
  */
-export type Student$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Student$dormInsurancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Payment
+   * Select specific fields to fetch from the DormInsurance
    */
-  select?: Prisma.PaymentSelect<ExtArgs> | null
+  select?: Prisma.DormInsuranceSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Payment
+   * Omit specific fields from the DormInsurance
    */
-  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  omit?: Prisma.DormInsuranceOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PaymentInclude<ExtArgs> | null
-  where?: Prisma.PaymentWhereInput
-  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentWhereUniqueInput
+  include?: Prisma.DormInsuranceInclude<ExtArgs> | null
+  where?: Prisma.DormInsuranceWhereInput
+  orderBy?: Prisma.DormInsuranceOrderByWithRelationInput | Prisma.DormInsuranceOrderByWithRelationInput[]
+  cursor?: Prisma.DormInsuranceWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
-}
-
-/**
- * Student.user
- */
-export type Student$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
+  distinct?: Prisma.DormInsuranceScalarFieldEnum | Prisma.DormInsuranceScalarFieldEnum[]
 }
 
 /**
@@ -2679,6 +2725,30 @@ export type Student$installmentRemindersArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * Student.payments
+ */
+export type Student$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
  * Student.room
  */
 export type Student$roomArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2698,27 +2768,22 @@ export type Student$roomArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * Student.dormInsurances
+ * Student.user
  */
-export type Student$dormInsurancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Student$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the DormInsurance
+   * Select specific fields to fetch from the User
    */
-  select?: Prisma.DormInsuranceSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the DormInsurance
+   * Omit specific fields from the User
    */
-  omit?: Prisma.DormInsuranceOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DormInsuranceInclude<ExtArgs> | null
-  where?: Prisma.DormInsuranceWhereInput
-  orderBy?: Prisma.DormInsuranceOrderByWithRelationInput | Prisma.DormInsuranceOrderByWithRelationInput[]
-  cursor?: Prisma.DormInsuranceWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.DormInsuranceScalarFieldEnum | Prisma.DormInsuranceScalarFieldEnum[]
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

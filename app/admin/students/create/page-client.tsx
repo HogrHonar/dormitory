@@ -65,6 +65,7 @@ export default function CreateStudentClient({
       fullNameEn: "",
       fullNameKu: "",
       mobileNo: "",
+      mobileNo2: "",
       gender: "Male",
       email: "",
       departmentId: "",
@@ -242,6 +243,20 @@ export default function CreateStudentClient({
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel>ژمارەی مۆبایل</FormLabel>
+                      <FormControl>
+                        <Input placeholder="0750 123 4567" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="mobileNo2"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel>ژمارەی بەخێوکەر</FormLabel>
                       <FormControl>
                         <Input placeholder="0750 123 4567" {...field} />
                       </FormControl>

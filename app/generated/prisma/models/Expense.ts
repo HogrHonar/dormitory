@@ -42,9 +42,9 @@ export type ExpenseMinAggregateOutputType = {
   date: Date | null
   documentUrl: string | null
   categoryId: string | null
-  dormId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  dormId: string | null
 }
 
 export type ExpenseMaxAggregateOutputType = {
@@ -55,9 +55,9 @@ export type ExpenseMaxAggregateOutputType = {
   date: Date | null
   documentUrl: string | null
   categoryId: string | null
-  dormId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  dormId: string | null
 }
 
 export type ExpenseCountAggregateOutputType = {
@@ -68,9 +68,9 @@ export type ExpenseCountAggregateOutputType = {
   date: number
   documentUrl: number
   categoryId: number
-  dormId: number
   createdAt: number
   updatedAt: number
+  dormId: number
   _all: number
 }
 
@@ -91,9 +91,9 @@ export type ExpenseMinAggregateInputType = {
   date?: true
   documentUrl?: true
   categoryId?: true
-  dormId?: true
   createdAt?: true
   updatedAt?: true
+  dormId?: true
 }
 
 export type ExpenseMaxAggregateInputType = {
@@ -104,9 +104,9 @@ export type ExpenseMaxAggregateInputType = {
   date?: true
   documentUrl?: true
   categoryId?: true
-  dormId?: true
   createdAt?: true
   updatedAt?: true
+  dormId?: true
 }
 
 export type ExpenseCountAggregateInputType = {
@@ -117,9 +117,9 @@ export type ExpenseCountAggregateInputType = {
   date?: true
   documentUrl?: true
   categoryId?: true
-  dormId?: true
   createdAt?: true
   updatedAt?: true
+  dormId?: true
   _all?: true
 }
 
@@ -217,9 +217,9 @@ export type ExpenseGroupByOutputType = {
   date: Date
   documentUrl: string | null
   categoryId: string
-  dormId: string | null
   createdAt: Date
   updatedAt: Date
+  dormId: string | null
   _count: ExpenseCountAggregateOutputType | null
   _avg: ExpenseAvgAggregateOutputType | null
   _sum: ExpenseSumAggregateOutputType | null
@@ -253,9 +253,9 @@ export type ExpenseWhereInput = {
   date?: Prisma.DateTimeFilter<"Expense"> | Date | string
   documentUrl?: Prisma.StringNullableFilter<"Expense"> | string | null
   categoryId?: Prisma.StringFilter<"Expense"> | string
-  dormId?: Prisma.StringNullableFilter<"Expense"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Expense"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Expense"> | Date | string
+  dormId?: Prisma.StringNullableFilter<"Expense"> | string | null
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   dorm?: Prisma.XOR<Prisma.DormitoryNullableScalarRelationFilter, Prisma.DormitoryWhereInput> | null
 }
@@ -268,9 +268,9 @@ export type ExpenseOrderByWithRelationInput = {
   date?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  dormId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dormId?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.CategoryOrderByWithRelationInput
   dorm?: Prisma.DormitoryOrderByWithRelationInput
 }
@@ -286,9 +286,9 @@ export type ExpenseWhereUniqueInput = Prisma.AtLeast<{
   date?: Prisma.DateTimeFilter<"Expense"> | Date | string
   documentUrl?: Prisma.StringNullableFilter<"Expense"> | string | null
   categoryId?: Prisma.StringFilter<"Expense"> | string
-  dormId?: Prisma.StringNullableFilter<"Expense"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Expense"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Expense"> | Date | string
+  dormId?: Prisma.StringNullableFilter<"Expense"> | string | null
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   dorm?: Prisma.XOR<Prisma.DormitoryNullableScalarRelationFilter, Prisma.DormitoryWhereInput> | null
 }, "id">
@@ -301,9 +301,9 @@ export type ExpenseOrderByWithAggregationInput = {
   date?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  dormId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dormId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ExpenseCountOrderByAggregateInput
   _avg?: Prisma.ExpenseAvgOrderByAggregateInput
   _max?: Prisma.ExpenseMaxOrderByAggregateInput
@@ -322,9 +322,9 @@ export type ExpenseScalarWhereWithAggregatesInput = {
   date?: Prisma.DateTimeWithAggregatesFilter<"Expense"> | Date | string
   documentUrl?: Prisma.StringNullableWithAggregatesFilter<"Expense"> | string | null
   categoryId?: Prisma.StringWithAggregatesFilter<"Expense"> | string
-  dormId?: Prisma.StringNullableWithAggregatesFilter<"Expense"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Expense"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Expense"> | Date | string
+  dormId?: Prisma.StringNullableWithAggregatesFilter<"Expense"> | string | null
 }
 
 export type ExpenseCreateInput = {
@@ -348,9 +348,9 @@ export type ExpenseUncheckedCreateInput = {
   date?: Date | string
   documentUrl?: string | null
   categoryId: string
-  dormId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  dormId?: string | null
 }
 
 export type ExpenseUpdateInput = {
@@ -374,9 +374,9 @@ export type ExpenseUncheckedUpdateInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ExpenseCreateManyInput = {
@@ -387,9 +387,9 @@ export type ExpenseCreateManyInput = {
   date?: Date | string
   documentUrl?: string | null
   categoryId: string
-  dormId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  dormId?: string | null
 }
 
 export type ExpenseUpdateManyMutationInput = {
@@ -411,9 +411,9 @@ export type ExpenseUncheckedUpdateManyInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ExpenseListRelationFilter = {
@@ -434,9 +434,9 @@ export type ExpenseCountOrderByAggregateInput = {
   date?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  dormId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dormId?: Prisma.SortOrder
 }
 
 export type ExpenseAvgOrderByAggregateInput = {
@@ -451,9 +451,9 @@ export type ExpenseMaxOrderByAggregateInput = {
   date?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  dormId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dormId?: Prisma.SortOrder
 }
 
 export type ExpenseMinOrderByAggregateInput = {
@@ -464,9 +464,9 @@ export type ExpenseMinOrderByAggregateInput = {
   date?: Prisma.SortOrder
   documentUrl?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  dormId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dormId?: Prisma.SortOrder
 }
 
 export type ExpenseSumOrderByAggregateInput = {
@@ -618,9 +618,9 @@ export type ExpenseScalarWhereInput = {
   date?: Prisma.DateTimeFilter<"Expense"> | Date | string
   documentUrl?: Prisma.StringNullableFilter<"Expense"> | string | null
   categoryId?: Prisma.StringFilter<"Expense"> | string
-  dormId?: Prisma.StringNullableFilter<"Expense"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Expense"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Expense"> | Date | string
+  dormId?: Prisma.StringNullableFilter<"Expense"> | string | null
 }
 
 export type ExpenseCreateWithoutCategoryInput = {
@@ -642,9 +642,9 @@ export type ExpenseUncheckedCreateWithoutCategoryInput = {
   description?: string | null
   date?: Date | string
   documentUrl?: string | null
-  dormId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  dormId?: string | null
 }
 
 export type ExpenseCreateOrConnectWithoutCategoryInput = {
@@ -728,9 +728,9 @@ export type ExpenseCreateManyCategoryInput = {
   description?: string | null
   date?: Date | string
   documentUrl?: string | null
-  dormId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  dormId?: string | null
 }
 
 export type ExpenseUpdateWithoutCategoryInput = {
@@ -752,9 +752,9 @@ export type ExpenseUncheckedUpdateWithoutCategoryInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ExpenseUncheckedUpdateManyWithoutCategoryInput = {
@@ -764,9 +764,9 @@ export type ExpenseUncheckedUpdateManyWithoutCategoryInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dormId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -779,9 +779,9 @@ export type ExpenseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   date?: boolean
   documentUrl?: boolean
   categoryId?: boolean
-  dormId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dormId?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   dorm?: boolean | Prisma.Expense$dormArgs<ExtArgs>
 }, ExtArgs["result"]["expense"]>
@@ -794,9 +794,9 @@ export type ExpenseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   date?: boolean
   documentUrl?: boolean
   categoryId?: boolean
-  dormId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dormId?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   dorm?: boolean | Prisma.Expense$dormArgs<ExtArgs>
 }, ExtArgs["result"]["expense"]>
@@ -809,9 +809,9 @@ export type ExpenseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   date?: boolean
   documentUrl?: boolean
   categoryId?: boolean
-  dormId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dormId?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   dorm?: boolean | Prisma.Expense$dormArgs<ExtArgs>
 }, ExtArgs["result"]["expense"]>
@@ -824,12 +824,12 @@ export type ExpenseSelectScalar = {
   date?: boolean
   documentUrl?: boolean
   categoryId?: boolean
-  dormId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dormId?: boolean
 }
 
-export type ExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "amount" | "description" | "date" | "documentUrl" | "categoryId" | "dormId" | "createdAt" | "updatedAt", ExtArgs["result"]["expense"]>
+export type ExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "amount" | "description" | "date" | "documentUrl" | "categoryId" | "createdAt" | "updatedAt" | "dormId", ExtArgs["result"]["expense"]>
 export type ExpenseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   dorm?: boolean | Prisma.Expense$dormArgs<ExtArgs>
@@ -857,9 +857,9 @@ export type $ExpensePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     date: Date
     documentUrl: string | null
     categoryId: string
-    dormId: string | null
     createdAt: Date
     updatedAt: Date
+    dormId: string | null
   }, ExtArgs["result"]["expense"]>
   composites: {}
 }
@@ -1292,9 +1292,9 @@ export interface ExpenseFieldRefs {
   readonly date: Prisma.FieldRef<"Expense", 'DateTime'>
   readonly documentUrl: Prisma.FieldRef<"Expense", 'String'>
   readonly categoryId: Prisma.FieldRef<"Expense", 'String'>
-  readonly dormId: Prisma.FieldRef<"Expense", 'String'>
   readonly createdAt: Prisma.FieldRef<"Expense", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Expense", 'DateTime'>
+  readonly dormId: Prisma.FieldRef<"Expense", 'String'>
 }
     
 

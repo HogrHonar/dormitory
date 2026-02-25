@@ -91,6 +91,7 @@ export async function createStudentAction(values: StudentSchemaType) {
         fullNameEn: validatedValues.fullNameEn,
         fullNameKu: validatedValues.fullNameKu,
         mobileNo: validatedValues.mobileNo,
+        mobileNo2: validatedValues.mobileNo2,
         gender: validatedValues.gender,
         email: validatedValues.email,
         isActive: validatedValues.isActive ?? true, // Add fallback

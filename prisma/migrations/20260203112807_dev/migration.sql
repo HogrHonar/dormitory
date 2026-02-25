@@ -35,6 +35,7 @@ CREATE TABLE "user" (
     "roleId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "isAllowed" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
@@ -140,6 +141,7 @@ CREATE TABLE "Student" (
     "fullNameEn" TEXT NOT NULL,
     "fullNameKu" TEXT NOT NULL,
     "mobileNo" TEXT NOT NULL,
+    "mobileNo2" TEXT,
     "gender" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,

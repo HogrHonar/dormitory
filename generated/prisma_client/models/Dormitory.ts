@@ -191,8 +191,8 @@ export type DormitoryWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Dormitory"> | Date | string
   managerId?: Prisma.StringNullableFilter<"Dormitory"> | string | null
   manager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  rooms?: Prisma.RoomListRelationFilter
   expenses?: Prisma.ExpenseListRelationFilter
+  rooms?: Prisma.RoomListRelationFilter
 }
 
 export type DormitoryOrderByWithRelationInput = {
@@ -203,8 +203,8 @@ export type DormitoryOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   managerId?: Prisma.SortOrderInput | Prisma.SortOrder
   manager?: Prisma.UserOrderByWithRelationInput
-  rooms?: Prisma.RoomOrderByRelationAggregateInput
   expenses?: Prisma.ExpenseOrderByRelationAggregateInput
+  rooms?: Prisma.RoomOrderByRelationAggregateInput
 }
 
 export type DormitoryWhereUniqueInput = Prisma.AtLeast<{
@@ -218,8 +218,8 @@ export type DormitoryWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Dormitory"> | Date | string
   managerId?: Prisma.StringNullableFilter<"Dormitory"> | string | null
   manager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  rooms?: Prisma.RoomListRelationFilter
   expenses?: Prisma.ExpenseListRelationFilter
+  rooms?: Prisma.RoomListRelationFilter
 }, "id" | "title">
 
 export type DormitoryOrderByWithAggregationInput = {
@@ -253,8 +253,8 @@ export type DormitoryCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   manager?: Prisma.UserCreateNestedOneWithoutManagedDormitoriesInput
-  rooms?: Prisma.RoomCreateNestedManyWithoutDormitoryInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutDormInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutDormitoryInput
 }
 
 export type DormitoryUncheckedCreateInput = {
@@ -264,8 +264,8 @@ export type DormitoryUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   managerId?: string | null
-  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutDormitoryInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutDormInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutDormitoryInput
 }
 
 export type DormitoryUpdateInput = {
@@ -275,8 +275,8 @@ export type DormitoryUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   manager?: Prisma.UserUpdateOneWithoutManagedDormitoriesNestedInput
-  rooms?: Prisma.RoomUpdateManyWithoutDormitoryNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutDormNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutDormitoryNestedInput
 }
 
 export type DormitoryUncheckedUpdateInput = {
@@ -286,8 +286,8 @@ export type DormitoryUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rooms?: Prisma.RoomUncheckedUpdateManyWithoutDormitoryNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutDormNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutDormitoryNestedInput
 }
 
 export type DormitoryCreateManyInput = {
@@ -441,8 +441,8 @@ export type DormitoryCreateWithoutManagerInput = {
   description: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  rooms?: Prisma.RoomCreateNestedManyWithoutDormitoryInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutDormInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutDormitoryInput
 }
 
 export type DormitoryUncheckedCreateWithoutManagerInput = {
@@ -451,8 +451,8 @@ export type DormitoryUncheckedCreateWithoutManagerInput = {
   description: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutDormitoryInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutDormInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutDormitoryInput
 }
 
 export type DormitoryCreateOrConnectWithoutManagerInput = {
@@ -619,8 +619,8 @@ export type DormitoryUpdateWithoutManagerInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  rooms?: Prisma.RoomUpdateManyWithoutDormitoryNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutDormNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutDormitoryNestedInput
 }
 
 export type DormitoryUncheckedUpdateWithoutManagerInput = {
@@ -629,8 +629,8 @@ export type DormitoryUncheckedUpdateWithoutManagerInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  rooms?: Prisma.RoomUncheckedUpdateManyWithoutDormitoryNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutDormNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutDormitoryNestedInput
 }
 
 export type DormitoryUncheckedUpdateManyWithoutManagerInput = {
@@ -647,13 +647,13 @@ export type DormitoryUncheckedUpdateManyWithoutManagerInput = {
  */
 
 export type DormitoryCountOutputType = {
-  rooms: number
   expenses: number
+  rooms: number
 }
 
 export type DormitoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  rooms?: boolean | DormitoryCountOutputTypeCountRoomsArgs
   expenses?: boolean | DormitoryCountOutputTypeCountExpensesArgs
+  rooms?: boolean | DormitoryCountOutputTypeCountRoomsArgs
 }
 
 /**
@@ -669,15 +669,15 @@ export type DormitoryCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
 /**
  * DormitoryCountOutputType without action
  */
-export type DormitoryCountOutputTypeCountRoomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RoomWhereInput
+export type DormitoryCountOutputTypeCountExpensesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ExpenseWhereInput
 }
 
 /**
  * DormitoryCountOutputType without action
  */
-export type DormitoryCountOutputTypeCountExpensesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ExpenseWhereInput
+export type DormitoryCountOutputTypeCountRoomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomWhereInput
 }
 
 
@@ -689,8 +689,8 @@ export type DormitorySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   updatedAt?: boolean
   managerId?: boolean
   manager?: boolean | Prisma.Dormitory$managerArgs<ExtArgs>
-  rooms?: boolean | Prisma.Dormitory$roomsArgs<ExtArgs>
   expenses?: boolean | Prisma.Dormitory$expensesArgs<ExtArgs>
+  rooms?: boolean | Prisma.Dormitory$roomsArgs<ExtArgs>
   _count?: boolean | Prisma.DormitoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dormitory"]>
 
@@ -726,8 +726,8 @@ export type DormitorySelectScalar = {
 export type DormitoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "createdAt" | "updatedAt" | "managerId", ExtArgs["result"]["dormitory"]>
 export type DormitoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   manager?: boolean | Prisma.Dormitory$managerArgs<ExtArgs>
-  rooms?: boolean | Prisma.Dormitory$roomsArgs<ExtArgs>
   expenses?: boolean | Prisma.Dormitory$expensesArgs<ExtArgs>
+  rooms?: boolean | Prisma.Dormitory$roomsArgs<ExtArgs>
   _count?: boolean | Prisma.DormitoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DormitoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -741,8 +741,8 @@ export type $DormitoryPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "Dormitory"
   objects: {
     manager: Prisma.$UserPayload<ExtArgs> | null
-    rooms: Prisma.$RoomPayload<ExtArgs>[]
     expenses: Prisma.$ExpensePayload<ExtArgs>[]
+    rooms: Prisma.$RoomPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1146,8 +1146,8 @@ readonly fields: DormitoryFieldRefs;
 export interface Prisma__DormitoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   manager<T extends Prisma.Dormitory$managerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dormitory$managerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  rooms<T extends Prisma.Dormitory$roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dormitory$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   expenses<T extends Prisma.Dormitory$expensesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dormitory$expensesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rooms<T extends Prisma.Dormitory$roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dormitory$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1598,30 +1598,6 @@ export type Dormitory$managerArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Dormitory.rooms
- */
-export type Dormitory$roomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Room
-   */
-  select?: Prisma.RoomSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Room
-   */
-  omit?: Prisma.RoomOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.RoomInclude<ExtArgs> | null
-  where?: Prisma.RoomWhereInput
-  orderBy?: Prisma.RoomOrderByWithRelationInput | Prisma.RoomOrderByWithRelationInput[]
-  cursor?: Prisma.RoomWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.RoomScalarFieldEnum | Prisma.RoomScalarFieldEnum[]
-}
-
-/**
  * Dormitory.expenses
  */
 export type Dormitory$expensesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1643,6 +1619,30 @@ export type Dormitory$expensesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ExpenseScalarFieldEnum | Prisma.ExpenseScalarFieldEnum[]
+}
+
+/**
+ * Dormitory.rooms
+ */
+export type Dormitory$roomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Room
+   */
+  select?: Prisma.RoomSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Room
+   */
+  omit?: Prisma.RoomOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomInclude<ExtArgs> | null
+  where?: Prisma.RoomWhereInput
+  orderBy?: Prisma.RoomOrderByWithRelationInput | Prisma.RoomOrderByWithRelationInput[]
+  cursor?: Prisma.RoomWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomScalarFieldEnum | Prisma.RoomScalarFieldEnum[]
 }
 
 /**
