@@ -8,9 +8,7 @@ interface CurrencyInputProps {
   placeholder?: string;
   className?: string;
   id?: string;
-  type?: string;
   step?: string;
-  target?: string;
 }
 
 export function CurrencyInput({
@@ -20,30 +18,38 @@ export function CurrencyInput({
   placeholder = "0",
   className,
   id,
-  type,
   step,
 }: CurrencyInputProps) {
-  // Format number with commas for display
   const formatDisplay = (raw: string) => {
     const digits = raw.replace(/,/g, "");
     if (!digits) return "";
     const num = parseFloat(digits);
     if (isNaN(num)) return raw;
-    return num.toLocaleString("en-US");
+
+    // Preserve decimal part while formatting integer part with commas
+    const parts = digits.split(".");
+    const intFormatted = parseInt(parts[0] || "0").toLocaleString("en-US");
+    return parts.length > 1 ? `${intFormatted}.${parts[1]}` : intFormatted;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Strip commas, only allow digits
-    const raw = e.target.value.replace(/,/g, "").replace(/[^0-9]/g, "");
-    onChange(raw);
+    // Strip commas, allow digits and ONE decimal point
+    const raw = e.target.value.replace(/,/g, "").replace(/[^0-9.]/g, "");
+
+    // Prevent multiple dots
+    const parts = raw.split(".");
+    const cleaned =
+      parts.length > 2 ? `${parts[0]}.${parts.slice(1).join("")}` : raw;
+
+    onChange(cleaned);
   };
 
   return (
     <Input
       id={id}
-      type={type}
+      type="text" // ALWAYS text, never "number"
       className={className}
-      inputMode="numeric"
+      inputMode="decimal" // decimal not numeric, allows dot on mobile
       value={formatDisplay(value)}
       onChange={handleChange}
       disabled={disabled}

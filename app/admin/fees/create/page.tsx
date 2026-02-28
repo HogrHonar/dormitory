@@ -103,7 +103,7 @@ export default function CreateFeeStructurePage() {
               name="totalAmount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>کۆی پارە ($)</FormLabel>
+                  <FormLabel>کۆی پارە (IQD)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"

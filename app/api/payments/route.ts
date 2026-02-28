@@ -26,10 +26,10 @@ type PaymentWithInstallment = Payment & {
 
 export async function POST(request: NextRequest) {
   try {
-    // const canRead = await hasPermission("payments:create");
-    // if (!canRead) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
+    const canRead = await hasPermission("payments:create");
+    if (!canRead) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     const body = await request.json();
     const validated = paymentSchema.safeParse(body);

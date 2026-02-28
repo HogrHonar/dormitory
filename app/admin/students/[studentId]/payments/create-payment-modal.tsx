@@ -43,21 +43,23 @@ interface CreatePaymentModalProps {
   installments: Installment[];
 }
 
-interface FormData {
+interface PaymentFormData {
   installmentId: string;
   amount: string;
   paymentType: PaymentType;
   paymentMethod: PaymentMethod;
   discountPercent: string;
+  discountAmount: string;
   receiptFile: File | null;
 }
 
-const INITIAL_FORM_STATE: FormData = {
+const INITIAL_FORM_STATE: PaymentFormData = {
   installmentId: "",
   amount: "",
   paymentType: "RECEIVE",
   paymentMethod: "CASH",
   discountPercent: "",
+  discountAmount: "",
   receiptFile: null,
 };
 
@@ -69,25 +71,40 @@ export function CreatePaymentModal({
 }: CreatePaymentModalProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_STATE);
+  const [formData, setFormData] = useState<PaymentFormData>(INITIAL_FORM_STATE);
 
   const selectedInstallment = useMemo(
     () => installments.find((inst) => inst.id === formData.installmentId),
     [installments, formData.installmentId],
   );
 
-  const calculatedDiscountAmount = useMemo(() => {
-    if (formData.paymentType !== "DISCOUNT") return 0;
-    if (!selectedInstallment) return 0;
+  const handleDiscountPercentChange = (value: string) => {
+    const percent = parseFloat(value) || 0;
+    const instAmount = selectedInstallment?.amount ?? 0;
+    const amount =
+      instAmount > 0 && percent > 0 && percent <= 100
+        ? Number(((instAmount * percent) / 100).toFixed(2)).toString()
+        : "";
+    setFormData((prev) => ({
+      ...prev,
+      discountPercent: value,
+      discountAmount: amount,
+    }));
+  };
 
-    const discountPercent = parseFloat(formData.discountPercent) || 0;
-    if (discountPercent <= 0 || discountPercent > 100) return 0;
-
-    return Number(
-      ((selectedInstallment.amount * discountPercent) / 100).toFixed(2),
-    );
-  }, [selectedInstallment, formData.discountPercent, formData.paymentType]);
-
+  const handleDiscountAmountChange = (value: string) => {
+    const amount = parseFloat(value) || 0;
+    const instAmount = selectedInstallment?.amount ?? 0;
+    const percent =
+      instAmount > 0 && amount > 0
+        ? Number(((amount / instAmount) * 100).toFixed(4)).toString()
+        : "";
+    setFormData((prev) => ({
+      ...prev,
+      discountAmount: value,
+      discountPercent: percent,
+    }));
+  };
   // Auto-fill amount when installment is selected (for RECEIVE type)
   useEffect(() => {
     if (
@@ -141,8 +158,10 @@ export function CreatePaymentModal({
       }
     }
 
+    // 7. Update validation to use formData.discountAmount
     if (formData.paymentType === "DISCOUNT") {
       const discountPercent = parseFloat(formData.discountPercent);
+      const discountAmount = parseFloat(formData.discountAmount);
       if (
         !formData.discountPercent ||
         isNaN(discountPercent) ||
@@ -150,6 +169,14 @@ export function CreatePaymentModal({
         discountPercent > 100
       ) {
         return "ڕێژەی داشکاندن دەبێت لە نێوان 0 بۆ 100 بێت";
+      }
+      // ADD amount validation
+      if (
+        !formData.discountAmount ||
+        isNaN(discountAmount) ||
+        discountAmount <= 0
+      ) {
+        return "تکایە بڕی داشکاندن بنووسە";
       }
       if (!formData.receiptFile) {
         return "تکایە فایلی وەسڵ هاوپێچ بکە";
@@ -202,7 +229,7 @@ export function CreatePaymentModal({
         paymentMethod: formData.paymentMethod,
         ...(formData.paymentType === "DISCOUNT" && {
           discountPercent: parseFloat(formData.discountPercent),
-          discountAmount: calculatedDiscountAmount,
+          discountAmount: parseFloat(formData.discountAmount), // CHANGED from calculatedDiscountAmount
           receiptUrl,
         }),
       };
@@ -315,26 +342,26 @@ export function CreatePaymentModal({
                   </Label>
                   <CurrencyInput
                     id="discountPercent"
-                    type="number"
                     step="0.01"
                     placeholder="0"
                     value={formData.discountPercent}
                     disabled={isLoading}
                     className="text-right"
-                    onChange={(value) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        discountPercent: value,
-                      }))
-                    }
+                    onChange={handleDiscountPercentChange} // CHANGED
                   />
                 </div>
 
                 <div className="grid gap-2">
                   <Label className="text-right">بڕی داشکاندن (هەزار)</Label>
-                  <div className="rounded-md border bg-muted px-3 py-2 text-right font-mono">
-                    {calculatedDiscountAmount.toFixed(2)} هەزار
-                  </div>
+                  <CurrencyInput
+                    id="discountAmount"
+                    step="0.01"
+                    placeholder="0"
+                    value={formData.discountAmount}
+                    disabled={isLoading}
+                    className="text-right"
+                    onChange={handleDiscountAmountChange} // NOW EDITABLE
+                  />
                 </div>
 
                 <div className="grid gap-2">

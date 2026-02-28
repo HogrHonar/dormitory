@@ -18,10 +18,10 @@ export default async function EditStudentPage({
 }: EditStudentPageProps) {
   const { studentId } = await params;
 
-  //   const canRead = await hasPermission("students:read");
-  //   if (!canRead) {
-  //     redirect("/unauthorized");
-  //   }
+  const canRead = await hasPermission("students:read");
+  if (!canRead) {
+    redirect("/unauthorized");
+  }
 
   // Fetch student data
   const student = await prisma.student.findUnique({

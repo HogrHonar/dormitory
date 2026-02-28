@@ -9,10 +9,10 @@ export async function updateStudentAction(
   studentId: string,
   values: StudentSchemaType,
 ) {
-//   const allowed = await hasPermission("students:update");
-//   if (!allowed) {
-//     return { error: "You do not have permission to update a student" };
-//   }
+  const allowed = await hasPermission("students:update");
+  if (!allowed) {
+    return { error: "You do not have permission to update a student" };
+  }
 
   const parsed = StudentSchema.safeParse(values);
   if (!parsed.success) {

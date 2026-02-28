@@ -58,7 +58,7 @@ export const columns: ColumnDef<StudentPayment>[] = [
             : "text-blue-600";
       return (
         <span className={`font-semibold ${color}`}>
-          ${row.original.amount.toLocaleString()}
+          {row.original.amount.toLocaleString()} هەزار
         </span>
       );
     },

@@ -150,7 +150,7 @@ export default function Page() {
       if (result.success) {
         toast.success("ئیمەیڵەکە بە سەرکەوتوویی نێردرا");
       } else {
-        toast.error(`تەکاو: ${result.error}`);
+        toast.error(`هەڵە: ${result.error}`);
       }
     } finally {
       setSending(false);
