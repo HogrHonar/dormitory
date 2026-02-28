@@ -57,9 +57,7 @@ export async function GET(req: Request) {
 
       try {
         await resend.emails.send({
-          from:
-            process.env.RESEND_FROM_EMAIL ||
-            "Dormitory <noreply@yourdomain.com>",
+          from: "Dormitory <noreply@mail.btvi.edu.iq>",
           to: student.email,
           subject: `Payment Reminder - ${installment.title}`,
           html: `

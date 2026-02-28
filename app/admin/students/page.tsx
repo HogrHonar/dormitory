@@ -14,7 +14,7 @@ export default async function StudentsPage() {
   const canRead = perms.has("students:read");
   const canCreate = perms.has("students:create");
 
-  if (!canRead) redirect("/unauthorized");
+  // if (!canRead) redirect("/unauthorized");
 
   return <StudentsClient canCreate={canCreate} />;
 }

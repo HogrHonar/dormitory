@@ -1,8 +1,8 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown } from "lucide-react";
-
+import { MoreHorizontal } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,10 +10,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 
 export type AdminStudentRow = {
   id: string;
@@ -22,6 +20,7 @@ export type AdminStudentRow = {
   fullNameKu: string;
   mobileNo: string;
   mobileNo2: string;
+  gender: string;
   department: {
     name: string;
   };
@@ -37,19 +36,33 @@ export const columns: ColumnDef<AdminStudentRow>[] = [
   {
     accessorKey: "studentCode",
     header: () => <div className="text-right">کۆد</div>,
+    cell: ({ row }) => {
+      const student = row.original;
+
+      return (
+        <div className="text-right">
+          <Link href={`/admin/students/${student.id}/payments`}>
+            {student.studentCode}
+          </Link>
+        </div>
+      );
+    },
   },
+
   {
     accessorKey: "fullNameKu",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="flex justify-end"
-      >
-        ناو
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
+    header: () => <div className="text-right">ناو</div>,
+    cell: ({ row }) => {
+      const student = row.original;
+
+      return (
+        <div className="text-right">
+          <Link href={`/admin/students/${student.id}/payments`}>
+            {student.fullNameKu}
+          </Link>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "mobileNo",
@@ -69,7 +82,8 @@ export const columns: ColumnDef<AdminStudentRow>[] = [
     header: () => <div className="text-right">بەش</div>,
   },
   {
-    accessorKey: "entranceYear.name",
+    accessorFn: (row) => row.entranceYear.name,
+    id: "entranceYear",
     header: () => <div className="text-right">ساڵی خوێندن</div>,
   },
   {
@@ -90,23 +104,44 @@ export const columns: ColumnDef<AdminStudentRow>[] = [
       const student = row.original;
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>گۆڕانکاری</DropdownMenuLabel>
-            <DropdownMenuLabel>سڕینەوە</DropdownMenuLabel>
+        <div className="flex justify-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full hover:bg-muted"
+              >
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
 
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(student.studentCode)}
-            >
-              کۆپی کۆد
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>کردارەکان</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem asChild>
+                <Link href={`/admin/students/edit/${student.id}`}>
+                  گۆڕانکاری
+                </Link>
+              </DropdownMenuItem>
+
+              <DropdownMenuItem className="text-red-600 focus:text-red-600">
+                سڕینەوە
+              </DropdownMenuItem>
+
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem
+                onClick={() =>
+                  navigator.clipboard.writeText(student.studentCode)
+                }
+              >
+                کۆپی کۆد
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       );
     },
   },

@@ -19,9 +19,9 @@ interface PageProps {
 
 export default async function Page(props: PageProps) {
   const canRead = await hasPermission("students:read");
-  if (!canRead) {
-    redirect("/unauthorized");
-  }
+  // if (!canRead) {
+  //   redirect("/unauthorized");
+  // }
 
   // Await params first
   const params = await props.params;

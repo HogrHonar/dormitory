@@ -36,8 +36,6 @@ import { useEffect, useState } from "react";
 import { getEducationYears } from "@/app/data/(public)/educationYear";
 import { DataTablePagination } from "./DataTablePagination";
 import React from "react";
-import { useRouter } from "next/navigation";
-import { StudentRow } from "@/lib/zodSchemas";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -87,7 +85,6 @@ export function DataTable<TData, TValue>({
   ];
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [filters, setFilters] = React.useState<Filters>({});
-  const router = useRouter();
 
   const [entranceYears, setEntranceYears] = useState<
     { id: string; name: string }[]
@@ -403,11 +400,6 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  onClick={() =>
-                    router.push(
-                      `/admin/students/${(row.original as StudentRow).id}/payments`,
-                    )
-                  }
                   className="cursor-pointer hover:bg-muted/50" // optional styling
                 >
                   {row.getVisibleCells().map((cell) => (

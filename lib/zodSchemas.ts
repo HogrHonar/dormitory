@@ -5,12 +5,12 @@ export const StudentSchema = z.object({
   fullNameEn: z.string().min(1, { message: "ناوی فێرخواز پێویستە" }),
   fullNameKu: z.string().min(1, { message: "ناوی فێرخواز پێویستە" }),
   mobileNo: z.string().min(1, { message: "ژمارەی مۆبایل پێویستە" }),
-  mobileNo2: z.string().min(1, { message: "ژمارەی بەخێوکەر پێویستە" }),
+  mobileNo2: z.string().optional().or(z.literal("")),
   gender: z.enum(["Male", "Female"]),
   email: z.string().email({ message: "ئیمەیڵ دروست نییە" }),
   departmentId: z.string().min(1, { message: "بەش پێویستە" }),
   entranceYearId: z.string().min(1, { message: "ساڵی هاتن پێویستە" }),
-  roomId: z.string().min(1, { message: "ژوور پێویستە" }),
+  roomId: z.string().nullable().optional(),
   isActive: z.boolean(),
 });
 

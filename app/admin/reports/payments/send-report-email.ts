@@ -44,14 +44,12 @@ function buildFilterLabel(filters: Filters): string {
 /*  Server Action                                                       */
 /* ------------------------------------------------------------------ */
 
-// const adminEmail = process.env.REPORT_ADMIN_EMAIL || "it@btvi.edu.iq";
-
 export async function sendPaymentsReportEmail(
   filters: Filters,
   totals: Totals,
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const adminEmail = ["it@btvi.edu.iq"];
+    const adminEmail = "Dormitory <noreply@mail.btvi.edu.iq>";
     if (!adminEmail) {
       throw new Error("REPORT_ADMIN_EMAIL is not set in environment variables");
     }
@@ -83,8 +81,8 @@ export async function sendPaymentsReportEmail(
     //   from: process.env.RESEND_FROM_EMAIL || "Acme <onboarding@resend.dev>",
 
     const { error } = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
-      to: ["it@btvi.edu.iq"],
+      from: "Dormitory <noreply@mail.btvi.edu.iq>",
+      to: ["all.hods@btvi.edu.iq"],
       subject: `Payments Report — ${date}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">

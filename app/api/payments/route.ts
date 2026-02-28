@@ -26,10 +26,10 @@ type PaymentWithInstallment = Payment & {
 
 export async function POST(request: NextRequest) {
   try {
-    const canRead = await hasPermission("payments:create");
-    if (!canRead) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    // const canRead = await hasPermission("payments:create");
+    // if (!canRead) {
+    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // }
 
     const body = await request.json();
     const validated = paymentSchema.safeParse(body);
@@ -279,7 +279,7 @@ async function sendPaymentConfirmationEmail(
     `;
 
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "Acme <onboarding@resend.dev>",
+      from: "Dormitory <noreply@mail.btvi.edu.iq>",
       to: [student.email],
       subject: `Payment Confirmation - ${payment.installment.title}`,
       html: emailBody,
