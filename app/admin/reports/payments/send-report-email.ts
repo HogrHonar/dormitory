@@ -71,14 +71,12 @@ export async function sendPaymentsReportEmail(
 
     const pdfBuffer = await renderPaymentsReport({
       rows,
-      totals: result.totals,
+      totals,
       filterLabel,
     });
 
     /* ---------- Send via Resend ---------- */
     const date = new Date().toLocaleDateString("en-GB");
-
-    //   from: process.env.RESEND_FROM_EMAIL || "Acme <onboarding@resend.dev>",
 
     const { error } = await resend.emails.send({
       from: "Dormitory <noreply@mail.btvi.edu.iq>",
@@ -95,19 +93,19 @@ export async function sendPaymentsReportEmail(
             </tr>
             <tr>
               <td style="padding:8px; font-weight:bold;">Total Amount</td>
-              <td style="padding:8px;">${result.totals.totalInstallmentAmount.toLocaleString()}</td>
+              <td style="padding:8px;">${totals.totalInstallmentAmount.toLocaleString()}</td>
             </tr>
             <tr style="background:#f0f4f8;">
               <td style="padding:8px; font-weight:bold;">Total Paid</td>
-              <td style="padding:8px;">${result.totals.totalPaid.toLocaleString()}</td>
+              <td style="padding:8px;">${totals.totalPaid.toLocaleString()}</td>
             </tr>
             <tr>
               <td style="padding:8px; font-weight:bold;">Total Discount</td>
-              <td style="padding:8px;">${result.totals.totalDiscount.toLocaleString()}</td>
+              <td style="padding:8px;">${totals.totalDiscount.toLocaleString()}</td>
             </tr>
             <tr style="background:#f0f4f8;">
               <td style="padding:8px; font-weight:bold;">Total Remaining</td>
-              <td style="padding:8px;">${result.totals.totalRemaining.toLocaleString()}</td>
+              <td style="padding:8px;">${totals.totalRemaining.toLocaleString()}</td>
             </tr>
           </table>
           <p style="color:#6b7280; font-size:12px; margin-top:24px;">
