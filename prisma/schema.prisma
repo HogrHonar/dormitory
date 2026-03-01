@@ -331,3 +331,62 @@ enum ReminderStage {
   FINAL
   OVERDUE
 }
+
+// ============================================
+// AUDIT LOGGING SYSTEM - Compatible with Adapter Pattern
+// ============================================
+model AuditLog {
+  id          String      @id @default(cuid())
+  action      AuditAction
+  entityType  String
+  entityId    String?
+  userId      String?
+  userEmail   String?
+  userRole    String?
+  oldValues   Json?
+  newValues   Json?
+  metadata    Json?
+  description String?
+  severity    LogSeverity @default(INFO)
+  ipAddress   String?
+  userAgent   String?
+  requestId   String?
+  createdAt   DateTime    @default(now())
+  archivedAt  DateTime?
+
+  @@index([entityType, entityId])
+  @@index([userId, createdAt])
+  @@index([action, createdAt])
+  @@index([severity, createdAt])
+  @@index([createdAt])
+  @@index([archivedAt])
+  @@map("audit_log")
+}
+
+enum AuditAction {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  EXPORT
+  IMPORT
+  APPROVE
+  REJECT
+  ASSIGN_ROLE
+  REVOKE_ROLE
+  PASSWORD_CHANGE
+  PASSWORD_RESET
+  SETTINGS_CHANGE
+  BULK_OPERATION
+  SYSTEM
+}
+
+enum LogSeverity {
+  DEBUG
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}

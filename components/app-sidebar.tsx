@@ -83,6 +83,9 @@ function buildNav(permissions: Set<string>): GroupItem[] {
     can("roles:read")
       ? { title: "دەسەڵاتەکان", url: "/admin/roles" }
       : undefined,
+    can("audit-logs:read")
+      ? { title: "تۆماری چاودێری", url: "/admin/audit-logs" }
+      : undefined,
   ].filter(Boolean) as SimpleItem[];
 
   const instituteSubitems: SimpleItem[] = [

@@ -5,6 +5,8 @@ import { hasPermission } from "@/lib/has-permission";
 import { Resend } from "resend";
 import { z } from "zod";
 import type { Payment, Installment } from "@/app/generated/prisma/client";
+import { auditLog } from "@/lib/audit";
+import { getCurrentUser } from "@/lib/get-current-user";
 
 export const dynamic = "force-dynamic";
 
@@ -25,9 +27,20 @@ type PaymentWithInstallment = Payment & {
 };
 
 export async function POST(request: NextRequest) {
+  const session = await getCurrentUser();
+
   try {
-    const canRead = await hasPermission("payments:create");
-    if (!canRead) {
+    const canCreate = await hasPermission("payments:create");
+    if (!canCreate) {
+      await auditLog({
+        action: "CREATE",
+        entityType: "Payment",
+        userId: session?.id,
+        userEmail: session?.email,
+        userRole: session?.role?.name,
+        severity: "WARNING",
+        description: "Unauthorized attempt to create payment",
+      });
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -173,7 +186,28 @@ export async function POST(request: NextRequest) {
         },
       });
 
-      return { payment, student };
+      return { payment, student, installment };
+    });
+
+    await auditLog({
+      action: "CREATE",
+      entityType: "Payment",
+      entityId: result.payment.id,
+      userId: session?.id,
+      userEmail: session?.email,
+      userRole: session?.role?.name,
+      description: `Created ${result.payment.paymentType} payment for student "${result.student.fullNameEn}" — installment "${result.installment.title}"`,
+      newValues: {
+        studentId,
+        installmentId,
+        installmentTitle: result.installment.title,
+        amount: result.payment.amount,
+        paymentType: result.payment.paymentType,
+        paymentMethod: result.payment.paymentMethod,
+        paymentStatus: result.payment.paymentStatus,
+        discountPercent: result.payment.discountPercent ?? null,
+        discountAmount: result.payment.discountAmount ?? null,
+      },
     });
 
     // Best effort email
@@ -183,7 +217,16 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result.payment, { status: 201 });
   } catch (error) {
-    console.error("Error creating payment:", error);
+    await auditLog({
+      action: "CREATE",
+      entityType: "Payment",
+      userId: session?.id,
+      userEmail: session?.email,
+      userRole: session?.role?.name,
+      severity: "ERROR",
+      description:
+        error instanceof Error ? error.message : "Failed to create payment",
+    });
 
     if (error instanceof Error) {
       if (error.message.includes("not found")) {

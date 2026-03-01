@@ -6,10 +6,10 @@ import { hasPermission } from "@/lib/has-permission";
 import { redirect } from "next/navigation";
 
 export default async function CreateStudentPage() {
-  const canRead = await hasPermission("students:read");
-  if (!canRead) {
-    redirect("/unauthorized");
-  }
+  // const canRead = await hasPermission("students:read");
+  // if (!canRead) {
+  //   redirect("/unauthorized");
+  // }
 
   // Fetch all required data on the server
   const [departments, entranceYears, availableRooms] = await Promise.all([

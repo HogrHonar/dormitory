@@ -52,3 +52,37 @@ export const ReminderStage = {
 } as const
 
 export type ReminderStage = (typeof ReminderStage)[keyof typeof ReminderStage]
+
+
+export const AuditAction = {
+  CREATE: 'CREATE',
+  READ: 'READ',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE',
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+  EXPORT: 'EXPORT',
+  IMPORT: 'IMPORT',
+  APPROVE: 'APPROVE',
+  REJECT: 'REJECT',
+  ASSIGN_ROLE: 'ASSIGN_ROLE',
+  REVOKE_ROLE: 'REVOKE_ROLE',
+  PASSWORD_CHANGE: 'PASSWORD_CHANGE',
+  PASSWORD_RESET: 'PASSWORD_RESET',
+  SETTINGS_CHANGE: 'SETTINGS_CHANGE',
+  BULK_OPERATION: 'BULK_OPERATION',
+  SYSTEM: 'SYSTEM'
+} as const
+
+export type AuditAction = (typeof AuditAction)[keyof typeof AuditAction]
+
+
+export const LogSeverity = {
+  DEBUG: 'DEBUG',
+  INFO: 'INFO',
+  WARNING: 'WARNING',
+  ERROR: 'ERROR',
+  CRITICAL: 'CRITICAL'
+} as const
+
+export type LogSeverity = (typeof LogSeverity)[keyof typeof LogSeverity]

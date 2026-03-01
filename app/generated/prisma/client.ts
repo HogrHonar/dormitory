@@ -144,3 +144,8 @@ export type Expense = Prisma.ExpenseModel
  * 
  */
 export type InstallmentReminder = Prisma.InstallmentReminderModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel

@@ -73,6 +73,10 @@ async function main() {
     { name: "installments:create", description: "Create installments" },
     { name: "installments:update", description: "Edit installments" },
     { name: "installments:delete", description: "Delete installments" },
+    { name: "audit-logs:read", description: "View audit logs" },
+    { name: "audit-logs:create", description: "Create audit logs" },
+    { name: "audit-logs:update", description: "Edit audit logs" },
+    { name: "audit-logs:delete", description: "Delete audit logs" },
   ];
 
   for (const perm of permissions) {

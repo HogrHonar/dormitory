@@ -4,11 +4,12 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { requireRole } from "@/lib/require-role";
 import { ROLES } from "@/lib/roles";
 import { getCurrentUser } from "@/lib/get-current-user";
+import { auditLog } from "@/lib/audit";
 
 export const dynamic = "force-dynamic";
 
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME!;
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ALLOWED_TYPES = [
   "application/pdf",
   "image/jpeg",
@@ -37,9 +38,16 @@ function getTigrisClient() {
 }
 
 export async function POST(request: NextRequest) {
+  const session = await getCurrentUser();
+
   try {
-    const auth = await getCurrentUser();
-    if (!auth) {
+    if (!session) {
+      await auditLog({
+        action: "CREATE",
+        entityType: "FileUpload",
+        severity: "WARNING",
+        description: "Unauthenticated file upload attempt",
+      });
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -82,31 +90,51 @@ export async function POST(request: NextRequest) {
       Key: key,
       Body: buffer,
       ContentType: file.type,
-      Metadata: {
-        uploadedAt: new Date().toISOString(),
-      },
+      Metadata: { uploadedAt: new Date().toISOString() },
     });
 
     await getTigrisClient().send(command);
 
     const fileUrl = `https://fly.storage.tigris.dev/${BUCKET_NAME}/${key}`;
 
-    return NextResponse.json(
-      {
-        url: fileUrl,
+    await auditLog({
+      action: "CREATE",
+      entityType: "FileUpload",
+      userId: session.id,
+      userEmail: session.email,
+      userRole: session.role?.name,
+      description: `Uploaded file "${key}"`,
+      newValues: {
         key,
         size: file.size,
         type: file.type,
+        folder,
+        studentName: studentName ?? null,
       },
+    });
+
+    return NextResponse.json(
+      { url: fileUrl, key, size: file.size, type: file.type },
       { status: 201 },
     );
   } catch (error) {
     console.error("Error uploading file to Tigris:", error);
+    await auditLog({
+      action: "CREATE",
+      entityType: "FileUpload",
+      userId: session?.id,
+      userEmail: session?.email,
+      userRole: session?.role?.name,
+      severity: "ERROR",
+      description: "File upload failed",
+    });
     return NextResponse.json({ error: "فایلەکە بارنەبوو" }, { status: 500 });
   }
 }
 
 export async function DELETE(request: NextRequest) {
+  const session = await getCurrentUser();
+
   try {
     await requireRole(ROLES.SUPER_ADMIN);
 
@@ -121,17 +149,31 @@ export async function DELETE(request: NextRequest) {
     }
 
     const { DeleteObjectCommand } = await import("@aws-sdk/client-s3");
-
-    const command = new DeleteObjectCommand({
-      Bucket: BUCKET_NAME,
-      Key: key,
-    });
-
+    const command = new DeleteObjectCommand({ Bucket: BUCKET_NAME, Key: key });
     await getTigrisClient().send(command);
+
+    await auditLog({
+      action: "DELETE",
+      entityType: "FileUpload",
+      userId: session?.id,
+      userEmail: session?.email,
+      userRole: session?.role?.name,
+      description: `Deleted file "${key}"`,
+      oldValues: { key },
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error deleting file from Tigris:", error);
+    await auditLog({
+      action: "DELETE",
+      entityType: "FileUpload",
+      userId: session?.id,
+      userEmail: session?.email,
+      userRole: session?.role?.name,
+      severity: "ERROR",
+      description: "File deletion failed",
+    });
     return NextResponse.json(
       { error: "Failed to delete file" },
       { status: 500 },

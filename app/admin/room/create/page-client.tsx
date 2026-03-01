@@ -100,7 +100,7 @@ export default function CreateRoomClient({
                     <SelectContent>
                       {dormitories.length === 0 ? (
                         <SelectItem value="empty" disabled>
-                          هیچ نوێخانەیەک نییە
+                          هیچ بەشە ناوخۆیی نییە
                         </SelectItem>
                       ) : (
                         dormitories.map((dormitory) => (
