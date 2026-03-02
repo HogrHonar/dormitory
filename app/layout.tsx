@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+
 import "./globals.css";
 import localFont from "next/font/local";
+import { ThemeProvider } from "@/components/theme-provider";
+import ProgressBar from "@/components/ProgressBar";
 
-const inter = Inter({ subsets: ["latin"] });
 const myFont = localFont({
   src: [
     {
@@ -40,11 +41,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-512x512.png" />
       </head>
-      <body className={myFont.className}>{children}</body>
+      <body className={`${myFont.variable} ${myFont.className} antialiased`}>
+        <ProgressBar />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

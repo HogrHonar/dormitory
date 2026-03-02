@@ -158,17 +158,22 @@ export function AppSidebar({ permissions, ...props }: AppSidebarProps) {
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+      {/* Blur color gradient background */}
+
+      <SidebarHeader className="relative z-10">
         <TeamSwitcher
           teams={[{ name: "BTVI", logo: GalleryVerticalEnd, plan: "BTVI" }]}
         />
       </SidebarHeader>
-      <SidebarContent>
+
+      <SidebarContent className="relative z-10">
         <NavMain items={navItems} />
       </SidebarContent>
-      <SidebarFooter>
+
+      <SidebarFooter className="relative z-10">
         <NavUser user={user} />
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );

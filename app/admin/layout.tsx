@@ -1,13 +1,10 @@
 // app/layout.tsx
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "sonner";
 import { getUserPermissions } from "@/lib/has-permission";
 import { OnlineStatusToast } from "@/components/online-banner";
+import { SiteHeader } from "@/components/site-header";
 
 export default async function RootLayout({
   children,
@@ -22,9 +19,7 @@ export default async function RootLayout({
 
       <SidebarProvider>
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-            <SidebarTrigger className="-mr-1 ml-auto rotate-180" />
-          </header>
+          <SiteHeader />
 
           <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
 
